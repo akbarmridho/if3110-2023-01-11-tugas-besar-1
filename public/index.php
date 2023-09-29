@@ -1,8 +1,5 @@
 <?php
 
-// Register autoloader
-require __DIR__ . '/../Core/Autoloader.php';
-
-\Core\Autoloader::register();
+require_once "../Core/bootstrap.php";
 
 \App\Hello::run();
