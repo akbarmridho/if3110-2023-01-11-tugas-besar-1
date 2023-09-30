@@ -15,3 +15,5 @@ require __DIR__ . '/helpers.php';
 require __DIR__ . '/../App/Routes/routes.php';
 
 // bind required classes here
+\Core\App::bind("config", require __DIR__ . '/config.php');
+\Core\App::bind("database", \Core\Database\Connection::make(\Core\App::get("config")["database"]));
