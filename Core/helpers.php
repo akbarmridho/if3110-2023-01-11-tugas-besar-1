@@ -21,3 +21,8 @@ function css(string $name)
 {
     return "/css/" . $name;
 }
+
+function assets(string $name)
+{
+    return "/assets/" . $name;
+}
