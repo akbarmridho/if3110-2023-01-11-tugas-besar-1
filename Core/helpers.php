@@ -5,11 +5,25 @@ function redirect(string $path): void
     header("Location: /$path");
 }
 
-function view($name, $data = [])
+function view($name, $data = [], string $title = "No Title", array $js = [], array $css = [], string $layout = "base")
 {
-    extract($data);
+    ob_start();
+    require __DIR__ . "/../resources/views/layout/$layout.layout.php";
 
-    return require "../resources/views/$name.view.php";
+    $layoutContent = ob_get_clean();
+
+    if (!$layoutContent) {
+        throw new Exception("Invalid contents on layout");
+    }
+
+    ob_start();
+    extract($data);
+    // render page view
+    require "../resources/views/$name.view.php";
+
+    $view = ob_get_clean();
+
+    print str_replace("{content}", $view, $layoutContent);
 }
 
 function js(string $name)
