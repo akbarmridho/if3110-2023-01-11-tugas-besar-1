@@ -9,7 +9,7 @@ class HelloController extends BaseController
 {
     public function hello(Request $request)
     {
-        echo "Hello, Frieren!";
+        view('index');
     }
 
     public function helloFern(Request $request)

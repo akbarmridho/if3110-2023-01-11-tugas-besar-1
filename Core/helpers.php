@@ -11,3 +11,13 @@ function view($name, $data = [])
 
     return require "../resources/views/$name.view.php";
 }
+
+function js(string $name)
+{
+    return "/js/" . $name;
+}
+
+function css(string $name)
+{
+    return "/css/" . $name;
+}
