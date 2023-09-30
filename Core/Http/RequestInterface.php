@@ -27,4 +27,8 @@ interface RequestInterface
      * @return string
      */
     public static function method(): string;
+
+    public function setRouteParam(array $param);
+
+    public function getRouteParam(string $key): string;
 }

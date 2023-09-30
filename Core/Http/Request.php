@@ -11,6 +11,9 @@ class Request implements RequestInterface
      */
     protected array $data;
 
+    protected array $routeParam = [];
+
+
     public function __construct()
     {
         $this->data = $_REQUEST;
@@ -49,5 +52,15 @@ class Request implements RequestInterface
     public static function method(): string
     {
         return $_SERVER['REQUEST_METHOD'];
+    }
+
+    public function setRouteParam(array $param): void
+    {
+        $this->routeParam = $param;
+    }
+
+    public function getRouteParam(string $key): string
+    {
+        return $this->routeParam[$key];
     }
 }
