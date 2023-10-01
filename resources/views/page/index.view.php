@@ -1,3 +1,8 @@
 <?php
+/** @var array $meta */
 
-echo "Hello, frieren!";
+$meta['title'] = 'Hello';
+
+?>
+
+Hello, frieren!
