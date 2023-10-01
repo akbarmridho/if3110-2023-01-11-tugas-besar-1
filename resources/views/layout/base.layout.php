@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?? "No title" ?></title>
     <link rel="stylesheet" href="<?= css("style.css") ?>">
+    <?php /** @var array $css */
+    foreach ($css as $each) : ?>
+        <link rel="stylesheet" href="<?= css($each) ?>.css">
+    <?php endforeach ?>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -13,5 +17,9 @@
     {content}
 </main>
 <script src="<?= js("index.js") ?>" defer></script>
+<?php /** @var array $js */
+foreach ($js as $each) : ?>
+    <script src="<?= js($each) ?>.js" defer></script>
+<?php endforeach ?>
 </body>
 </html>
