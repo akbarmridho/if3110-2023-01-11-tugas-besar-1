@@ -51,7 +51,13 @@ class Request implements RequestInterface
      */
     public static function method(): string
     {
-        return $_SERVER['REQUEST_METHOD'];
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        if ($method === 'POST' && array_key_exists('_method', $_POST)) {
+            return $_POST['_method'];
+        }
+
+        return $method;
     }
 
     public function setRouteParam(array $param): void

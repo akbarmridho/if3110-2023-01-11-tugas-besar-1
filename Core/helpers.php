@@ -5,25 +5,43 @@ function redirect(string $path): void
     header("Location: /$path");
 }
 
-function view($name, $data = [], string $title = "No Title", array $js = [], array $css = [], string $layout = "base")
+function render_page(string $name, $data = [], string $title = "No Title", array $js = [], array $css = [], string $layout = "base"): void
 {
-    ob_start();
-    require __DIR__ . "/../resources/views/layout/$layout.layout.php";
+    $layoutContent = "";
 
-    $layoutContent = ob_get_clean();
+    // replace dot with slash
+    $name = str_replace(".", "/", $name);
 
-    if (!$layoutContent) {
-        throw new Exception("Invalid contents on layout");
-    }
+    (function () use ($title, $js, $css, $layout, &$layoutContent) {
+        ob_start();
+        require __DIR__ . "/../resources/views/layout/$layout.layout.php";
 
-    ob_start();
+        $layoutContent = ob_get_clean();
+
+        if (!$layoutContent) {
+            throw new Exception("Invalid contents on layout");
+        }
+    })();
+
+    (function () use ($layoutContent, $data, $name) {
+        ob_start();
+        extract($data);
+        // render page view
+        require "../resources/views/page/$name.view.php";
+
+        $view = ob_get_clean();
+
+        print str_replace("{content}", $view, $layoutContent);
+    })();
+}
+
+function render_component(string $name, array $data = [])
+{
+    $name = str_replace(".", "/", $name);
+
     extract($data);
-    // render page view
-    require "../resources/views/$name.view.php";
 
-    $view = ob_get_clean();
-
-    print str_replace("{content}", $view, $layoutContent);
+    require "../resources/views/components/$name.view.php";
 }
 
 function js(string $name)
