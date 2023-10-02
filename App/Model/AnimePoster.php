@@ -6,7 +6,10 @@ use Core\Base\Model;
 use Core\App;
 use Core\Database\Connection;
 
-
+/**
+ * @property int anime_id
+ * @property string poster
+ */
 class AnimePoster extends Model
 {
     public function __construct(array $data)
@@ -18,7 +21,7 @@ class AnimePoster extends Model
         $this->data = $data;
     }
 
-    public static function findById(string $id): null|AnimePoster {
+    public static function findById(int $id): null|AnimePoster {
         /* create a connection */
         $connection = App::get('database');
         assert($connection instanceof Connection);

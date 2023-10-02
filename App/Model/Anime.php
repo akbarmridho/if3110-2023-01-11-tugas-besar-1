@@ -6,7 +6,18 @@ use Core\Base\Model;
 use Core\App;
 use Core\Database\Connection;
 
-
+/**
+ * @property int id
+ * @property string title
+ * @property string studio
+ * @property string genre
+ * @property string description
+ * @property int episode_count
+ * @property DateTime air_date_start
+ * @property DateTime air_date_end
+ * @property DateTime created_at
+ * @property DateTime updated_at
+ */
 class Anime extends Model
 {
     public function __construct(array $data)
@@ -26,7 +37,7 @@ class Anime extends Model
         $this->data = $data;
     }
 
-    public static function findById(string $id): null|Anime {
+    public static function findById(int $id): null|Anime {
         /* create a connection */
         $connection = App::get('database');
         assert($connection instanceof Connection);
