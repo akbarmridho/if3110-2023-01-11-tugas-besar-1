@@ -5,8 +5,13 @@
     <ul class="nav">
         <li class="navlink"><a href="/">Home</a></li>
         <li class="navlink"><a href="/">Add Anime</a></li>
-        <li class="navlink"><a href="/">Profile</a></li>
-        <li class="navlink"><a href="/">Logout</a></li>
+        <?php if (\Core\Session\Session::isAuthenticated()) : ?>
+            <li class="navlink"><a href="/">Profile</a></li>
+            <li class="navlink"><a href="/">Logout</a></li>
+        <?php else: ?>
+            <li class="navlink"><a href="/">Login</a></li>
+            <li class="navlink"><a href="/">Register</a></li>
+        <?php endif ?>
     </ul>
     <div class="burger">
         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">

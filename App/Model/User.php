@@ -5,8 +5,18 @@ namespace App\Model;
 use Core\Base\Model;
 use Core\App;
 use Core\Database\Connection;
+use DateTime;
 
-
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $username
+ * @property string $password
+ * @property string $bio
+ * @property string $role
+ * @property DateTime $created_at
+ * @property DateTime $updated_at
+ */
 class User extends Model
 {
     public function __construct(array $data)
@@ -24,15 +34,15 @@ class User extends Model
         $this->data = $data;
     }
 
-    public static function findById(string $id): null|User {
+    public static function findById(int $id): null|User
+    {
         /* create a connection */
         $connection = App::get('database');
         assert($connection instanceof Connection);
 
         /* execute query, fetch one row */
         $statement = $connection->executeStatement('SELECT * FROM User_Data WHERE id = :id', ['id' => $id]);
-        if (empty($statement->fetch()))
-        {
+        if (empty($statement->fetch())) {
             return null;
         }
 
