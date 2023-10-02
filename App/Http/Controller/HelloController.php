@@ -2,17 +2,18 @@
 
 namespace App\Http\Controller;
 
-use App\Model\Anime;
 use Core\Base\BaseController;
 use Core\Http\Request;
+use App\Model\Anime;
 
 class HelloController extends BaseController
 {
     public function hello(Request $request)
     {
         render('index');
+        var_dump(Anime::findById('2'));
     }
-
+    
     public function helloFern(Request $request)
     {
         echo "Hello, Fern!";

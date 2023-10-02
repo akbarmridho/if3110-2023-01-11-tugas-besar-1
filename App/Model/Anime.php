@@ -26,19 +26,19 @@ class Anime extends Model
         $this->data = $data;
     }
 
-    public static function findById(string $id): null|Anime
-    {
+    public static function findById(string $id): null|Anime {
         /* create a connection */
         $connection = App::get('database');
         assert($connection instanceof Connection);
 
         /* execute query, fetch one row */
-        $statement = $connection->executeStatement('SELECT * FROM Anime WHERE id = :id', ['id' => $id]);
-        if (empty($statement->fetch())) {
+        $result = $connection->executeStatement('SELECT * FROM Anime WHERE id = :id', ['id' => $id]);
+        if (empty($result))
+        {
             return null;
         }
 
-        return new Anime($statement->fetch());
+        return new Anime($result);
     }
 }
 
