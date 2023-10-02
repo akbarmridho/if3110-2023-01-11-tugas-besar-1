@@ -26,7 +26,7 @@ class AnimePoster extends Model
         $connection = App::get('database');
         assert($connection instanceof Connection);
 
-        /* execute query, fetch one row */
+        /* execute query, fetch rows */
         $result = $connection->executeStatement('SELECT * FROM Anime_Poster WHERE anime_id = :id', ['id' => $id]);
         if (empty($result))
         {
