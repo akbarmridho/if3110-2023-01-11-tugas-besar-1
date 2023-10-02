@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $meta['title'] ?></title>
     <link rel="stylesheet" href="<?= css("style.css") ?>">
+    <link rel="stylesheet" href="<?= css("components/navbar.css") ?>">
     <?php foreach ($meta['css'] as $css) : ?>
         <link rel="stylesheet" href="<?= css($css) ?>.css">
     <?php endforeach ?>
@@ -19,6 +20,7 @@
     <?= $meta['content'] ?>
 </main>
 <script src="<?= js("index.js") ?>" defer></script>
+<script src="<?= js("components/navbar.js") ?>" defer></script>
 <?php foreach ($meta['js'] as $js) : ?>
     <script src="<?= js($js) ?>.js" defer></script>
 <?php endforeach ?>

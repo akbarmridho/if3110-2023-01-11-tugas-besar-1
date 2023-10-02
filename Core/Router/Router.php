@@ -4,6 +4,7 @@ namespace Core\Router;
 
 use Core\Http\Request;
 use Core\Http\RequestInterface;
+use Core\Http\Response;
 use Exception;
 
 class Router
@@ -57,6 +58,11 @@ class Router
             } else {
                 $i++;
             }
+        }
+
+        if (!$found) {
+            Response::status(404);
+            render('404');
         }
     }
 

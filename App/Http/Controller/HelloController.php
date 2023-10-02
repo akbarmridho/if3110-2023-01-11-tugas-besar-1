@@ -2,6 +2,7 @@
 
 namespace App\Http\Controller;
 
+use App\Model\Anime;
 use Core\Base\BaseController;
 use Core\Http\Request;
 
