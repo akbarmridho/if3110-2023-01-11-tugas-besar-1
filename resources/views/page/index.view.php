@@ -1,7 +1,8 @@
 <?php
 /** @var array $meta */
 
-$meta['title'] = 'Hello';
+$meta['title'] = 'ListWibuKu - Home';
+$meta['layout'] = 'withnavbar';
 
 ?>
 
