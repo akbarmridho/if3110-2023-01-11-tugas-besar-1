@@ -21,20 +21,19 @@ class AnimePoster extends Model
         $this->data = $data;
     }
 
-    public static function findById(int $id): null|AnimePoster {
+    public static function findById(int $id) {
         /* create a connection */
         $connection = App::get('database');
         assert($connection instanceof Connection);
 
         /* execute query, fetch one row */
-        $statement = $connection->executeStatement('SELECT * FROM Anime_Poster WHERE anime_id = :id', ['id' => $id]);
+        $result = $connection->executeStatement('SELECT * FROM Anime_Poster WHERE anime_id = :id', ['id' => $id]);
         if (empty($result))
         {
             return null;
         }
 
-        return new AnimePoster($result);
-        // todo: fetchAll rows containing anime_id == id
+        return array_map(fn($row) => new AnimePoster($row), $result);
     }
 }
 

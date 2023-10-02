@@ -21,20 +21,19 @@ class AnimeTrailer extends Model
         $this->data = $data;
     }
 
-    public static function findById(int $id): null|AnimeTrailer {
+    public static function findById(int $id) {
         /* create a connection */
         $connection = App::get('database');
         assert($connection instanceof Connection);
 
         /* execute query, fetch one row */
-        $reuslt = $connection->executeStatement('SELECT * FROM Anime_Trailer WHERE anime_id = :id', ['id' => $id]);
+        $result = $connection->executeStatement('SELECT * FROM Anime_Trailer WHERE anime_id = :id', ['id' => $id]);
         if (empty($result))
         {
             return null;
         }
 
-        return new AnimeTrailer($result);
-        // todo: fetchAll rows containing anime_id == id
+        return array_map(fn($row) => new AnimeTrailer($row), $result);
     }
 }
 
