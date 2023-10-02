@@ -49,7 +49,7 @@ class Anime extends Model
             return null;
         }
 
-        return new Anime($result);
+        return new Anime($result[0]);
     }
 }
 

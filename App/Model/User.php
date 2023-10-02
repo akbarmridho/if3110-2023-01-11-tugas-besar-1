@@ -46,7 +46,7 @@ class User extends Model
             return null;
         }
 
-        return new User($result);
+        return new User($result[0]);
     }
 }
 
