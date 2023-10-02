@@ -50,6 +50,6 @@ class Validator
 
     public function isError(): bool
     {
-        return count($this->errorMessages) === 0;
+        return !empty($this->errorMessages);
     }
 }

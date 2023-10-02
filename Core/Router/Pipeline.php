@@ -3,7 +3,6 @@
 namespace Core\Router;
 
 use Core\Http\InjectUser;
-use Core\Http\MiddlewareInterface;
 use Core\Http\RequestInterface;
 use Exception;
 
@@ -33,7 +32,7 @@ class Pipeline
 
     public function registerMiddlewares(array $middleware): void
     {
-        $this->middlewares = $middleware;
+        $this->middlewares = array_merge($this->middlewares, $middleware);
     }
 
     public function isMatch(string $uri): bool

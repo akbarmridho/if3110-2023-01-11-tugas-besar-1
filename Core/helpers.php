@@ -4,6 +4,9 @@ require_once __DIR__ . "/Helpers/renderer.php";
 
 function redirect(string $path): void
 {
+    if (str_starts_with($path, "/")) {
+        $path = ltrim($path, "/");
+    }
     header("Location: /$path");
 }
 
@@ -20,4 +23,9 @@ function css(string $name)
 function assets(string $name)
 {
     return "/assets/" . $name;
+}
+
+function hash_password(string $password): string
+{
+    return password_hash($password, PASSWORD_BCRYPT);
 }

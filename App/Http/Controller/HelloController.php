@@ -4,6 +4,8 @@ namespace App\Http\Controller;
 
 use Core\Base\BaseController;
 use Core\Http\Request;
+use App\Model\User;
+use Core\Session\Session;
 
 class HelloController extends BaseController
 {
@@ -11,7 +13,7 @@ class HelloController extends BaseController
     {
         render('index');
     }
-    
+
     public function helloFern(Request $request)
     {
         echo "Hello, Fern!";

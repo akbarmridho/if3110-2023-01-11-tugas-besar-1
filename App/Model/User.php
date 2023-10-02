@@ -48,5 +48,20 @@ class User extends Model
 
         return new User($result[0]);
     }
+
+    public static function findByUsername(string $username): null|User
+    {
+        /* create a connection */
+        $connection = App::get('database');
+        assert($connection instanceof Connection);
+
+        /* execute query, fetch one row */
+        $result = $connection->executeStatement('SELECT * FROM User_Data WHERE username = :username', ['username' => $username]);
+        if (empty($result)) {
+            return null;
+        }
+
+        return new User($result[0]);
+    }
 }
 

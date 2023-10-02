@@ -32,6 +32,11 @@ class Request implements RequestInterface
         return $this->data[$key] ?? $default;
     }
 
+    public function getFormData(): array
+    {
+        return $_POST;
+    }
+
     /**
      * Get request URI
      *

@@ -3,6 +3,7 @@
 namespace Core\Session;
 
 use App\Model\User;
+use Core\Exception\HttpException;
 
 class Session
 {
@@ -22,6 +23,8 @@ class Session
 
     public static function logout()
     {
-        session_destroy();
+        if (!session_destroy()) {
+            throw new HttpException('Cannot destroy session');
+        }
     }
 }

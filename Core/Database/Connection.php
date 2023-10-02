@@ -12,7 +12,7 @@ class Connection
     public function __construct(protected PDO $pdo)
     {
     }
-    
+
     /**
      * Prepare query with params
      * returns selected rows as Array of Arrays
@@ -22,7 +22,7 @@ class Connection
         $statement = $this->pdo->prepare($sql);
         $statement->execute($parameters);
 
-        return $statement->fetchAll();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**

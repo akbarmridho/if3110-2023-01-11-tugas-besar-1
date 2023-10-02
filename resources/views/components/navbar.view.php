@@ -9,9 +9,13 @@
         <?php endif ?>
         <?php if (\Core\Session\Session::isAuthenticated()) : ?>
             <li class="navlink"><a href="/">Profile</a></li>
-            <li class="navlink"><a href="/">Logout</a></li>
+            <li class="navlink">
+                <form action="/logout" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
         <?php else: ?>
-            <li class="navlink"><a href="/">Login</a></li>
+            <li class="navlink"><a href="/login">Login</a></li>
             <li class="navlink"><a href="/">Register</a></li>
         <?php endif ?>
     </ul>
