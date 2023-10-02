@@ -2,6 +2,7 @@
 
 namespace Core\Database;
 
+use ArrayObject;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -11,13 +12,17 @@ class Connection
     public function __construct(protected PDO $pdo)
     {
     }
-
-    public function executeStatement(string $sql, $parameters = []): bool|PDOStatement
+    
+    /**
+     * Prepare query with params
+     * returns selected rows as Array of Arrays
+     */
+    public function executeStatement(string $sql, $parameters = []): array
     {
         $statement = $this->pdo->prepare($sql);
         $statement->execute($parameters);
 
-        return $statement;
+        return $statement->fetchAll();
     }
 
     /**
