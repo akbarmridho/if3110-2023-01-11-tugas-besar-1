@@ -24,13 +24,13 @@ class AnimeTrailer extends Model
         assert($connection instanceof Connection);
 
         /* execute query, fetch one row */
-        $statement = $connection->executeStatement('SELECT * FROM Anime_Trailer WHERE anime_id = :id', ['id' => $id]);
-        if (empty($statement->fetch()))
+        $reuslt = $connection->executeStatement('SELECT * FROM Anime_Trailer WHERE anime_id = :id', ['id' => $id]);
+        if (empty($result))
         {
             return null;
         }
 
-        return new AnimeTrailer($statement->fetch());
+        return new AnimeTrailer($result);
         // todo: fetchAll rows containing anime_id == id
     }
 }

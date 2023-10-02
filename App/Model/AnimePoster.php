@@ -25,12 +25,12 @@ class AnimePoster extends Model
 
         /* execute query, fetch one row */
         $statement = $connection->executeStatement('SELECT * FROM Anime_Poster WHERE anime_id = :id', ['id' => $id]);
-        if (empty($statement->fetch()))
+        if (empty($result))
         {
             return null;
         }
 
-        return new AnimePoster($statement->fetch());
+        return new AnimePoster($result);
         // todo: fetchAll rows containing anime_id == id
     }
 }

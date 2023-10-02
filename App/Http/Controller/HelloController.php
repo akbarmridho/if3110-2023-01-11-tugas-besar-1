@@ -4,14 +4,14 @@ namespace App\Http\Controller;
 
 use Core\Base\BaseController;
 use Core\Http\Request;
-use App\Model\Anime;
+use App\Model\User;
 
 class HelloController extends BaseController
 {
     public function hello(Request $request)
     {
         render('index');
-        var_dump(Anime::findById('2'));
+        var_dump(User::findById('1'));
     }
     
     public function helloFern(Request $request)

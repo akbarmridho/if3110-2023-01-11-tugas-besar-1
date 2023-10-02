@@ -41,13 +41,12 @@ class User extends Model
         assert($connection instanceof Connection);
 
         /* execute query, fetch one row */
-        $statement = $connection->executeStatement('SELECT * FROM User_Data WHERE id = :id', ['id' => $id]);
-        if (empty($statement->fetch())) {
+        $result = $connection->executeStatement('SELECT * FROM User_Data WHERE id = :id', ['id' => $id]);
+        if (empty($result)) {
             return null;
         }
 
-        return new User($statement->fetch());
-        // todo: test connection
+        return new User($result);
     }
 }
 
