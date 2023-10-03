@@ -2,6 +2,8 @@
 
 namespace Core\Base;
 
+use Core\App;
+use Core\Database\Connection;
 use Core\Exception\ModelAttributeNotExist;
 
 abstract class Model
@@ -9,6 +11,8 @@ abstract class Model
     protected array $attributes = [];
 
     protected array $data = [];
+
+    public static Connection $connection;
 
     public function __get(string $key): mixed
     {

@@ -19,4 +19,8 @@ require __DIR__ . '/../App/Routes/routes.php';
 
 // bind required classes here
 \Core\App::bind("config", require __DIR__ . '/config.php');
-\Core\App::bind("database", new \Core\Database\Connection(\Core\Database\Connection::make(\Core\App::get("config")["database"])));
+
+$connection = new \Core\Database\Connection(\Core\Database\Connection::make(\Core\App::get("config")["database"]));
+\Core\App::bind("database", $connection);
+
+\Core\Base\Model::$connection = $connection;

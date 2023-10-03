@@ -5,6 +5,7 @@ namespace App\Model;
 use Core\Base\Model;
 use Core\App;
 use Core\Database\Connection;
+use DateTime;
 
 /**
  * @property int id
@@ -20,32 +21,29 @@ use Core\Database\Connection;
  */
 class Anime extends Model
 {
+    protected array $attributes = [
+        'id',
+        'title',
+        'studio',
+        'genre',
+        'description',
+        'episode_count',
+        'air_date_start',
+        'air_date_end',
+        'created_at',
+        'updated_at'
+    ];
+
     public function __construct(array $data)
     {
-        $this->attributes = array(
-            'id',
-            'title',
-            'studio',
-            'genre',
-            'description',
-            'episode_count',
-            'air_date_start',
-            'air_date_end',
-            'created_at',
-            'updated_at'
-        );
         $this->data = $data;
     }
 
-    public static function findById(int $id): null|Anime {
-        /* create a connection */
-        $connection = App::get('database');
-        assert($connection instanceof Connection);
-
+    public static function findById(int $id): null|Anime
+    {
         /* execute query, fetch one row */
-        $result = $connection->executeStatement('SELECT * FROM Anime WHERE id = :id', ['id' => $id]);
-        if (empty($result))
-        {
+        $result = static::$connection->executeStatement('SELECT * FROM Anime WHERE id = :id', ['id' => $id]);
+        if (empty($result)) {
             return null;
         }
 

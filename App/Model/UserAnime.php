@@ -9,7 +9,7 @@ use Core\Database\Connection;
 /**
  * @property int user_id
  * @property int anime_id
- * @property enum status
+ * @property string status
  */
 class UserAnime extends Model
 {
@@ -23,15 +23,11 @@ class UserAnime extends Model
         $this->data = $data;
     }
 
-    public static function findByUserId(int $id) {
-        /* create a connection */
-        $connection = App::get('database');
-        assert($connection instanceof Connection);
-
+    public static function findByUserId(int $id)
+    {
         /* execute query, fetch rows */
-        $result = $connection->executeStatement('SELECT * FROM User_Anime WHERE user_id = :id', ['id' => $id]);
-        if (empty($result))
-        {
+        $result = static::$connection->executeStatement('SELECT * FROM User_Anime WHERE user_id = :id', ['id' => $id]);
+        if (empty($result)) {
             return null;
         }
 
