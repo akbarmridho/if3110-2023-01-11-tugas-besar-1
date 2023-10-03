@@ -62,7 +62,8 @@ class Anime extends Model
         return new Anime($result[0]);
     }
 
-    public static function create(array $data): int {
+    public static function create(array $data): int 
+    {
         $columns = array_keys($data);
         $values = array_values($data);
 
@@ -75,7 +76,7 @@ class Anime extends Model
         return static::$connection->rowCount();
     }
 
-    public static function remove(int $id)
+    public static function remove(int $id): int
     {
         /* execute query, find and delete selected id */
         $result = static::$connection->executeStatement('DELETE FROM anime WHERE id = :id;', ['id' => $id]);
@@ -83,7 +84,8 @@ class Anime extends Model
         return static::$connection->rowCount();
     }
 
-    public static function update(int $id, array $data): int {
+    public static function update(int $id, array $data): int 
+    {
         $columns = array_keys($data);
         $values = array_values($data);
 

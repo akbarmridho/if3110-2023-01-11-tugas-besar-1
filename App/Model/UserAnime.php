@@ -33,5 +33,38 @@ class UserAnime extends Model
 
         return array_map(fn($row) => new UserAnime($row), $result);
     }
+
+    public static function create(int $user_id, int $anime_id, string $status='WISHLIST'): int 
+    {
+        /* execute query, insert values */
+        static::$connection->executeStatement(
+            "INSERT INTO user_anime (user_id, anime_id, status) VALUES (:user_id, :anime_id, :status)",
+            ['user_id' => $user_id, 'anime_id' => $anime_id, 'status' => $status]
+        );
+
+        return static::$connection->rowCount();
+    }
+
+    public static function remove(int $user_id, int $anime_id): int
+    {
+        /* execute query, find and delete selected id */
+        $result = static::$connection->executeStatement(
+            'DELETE FROM user_anime WHERE user_id = :user_id AND anime_id = :anime_id', 
+            ['user_id' => $user_id, 'anime_id' => $anime_id]
+        );
+
+        return static::$connection->rowCount();
+    }
+
+    public static function updateStatus(int $user_id, int $anime_id, string $status): int 
+    {
+        /* execute query, insert values */
+        static::$connection->executeStatement(
+            "UPDATE user_anime SET status = :status WHERE user_id = :user_id AND anime_id = :anime_id",
+            ['user_id' => $user_id, 'anime_id' => $anime_id, 'status' => $status]
+        );
+
+        return static::$connection->rowCount();
+    }
 }
 

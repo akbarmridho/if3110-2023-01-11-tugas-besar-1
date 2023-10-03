@@ -78,7 +78,8 @@ class Review extends Model
         return new Review($result[0]);
     }
 
-    public static function create(array $data): int {
+    public static function create(array $data): int 
+    {
         $columns = array_keys($data);
         $values = array_values($data);
 
@@ -91,7 +92,7 @@ class Review extends Model
         return static::$connection->rowCount();
     }
 
-    public static function remove(int $id)
+    public static function remove(int $id): int
     {
         /* execute query, find and delete selected id */
         $result = static::$connection->executeStatement('DELETE FROM review WHERE id = :id;', ['id' => $id]);
@@ -99,7 +100,8 @@ class Review extends Model
         return static::$connection->rowCount();
     }
 
-    public static function update(int $id, array $data): int {
+    public static function update(int $id, array $data): int 
+    {
         $columns = array_keys($data);
         $values = array_values($data);
 
