@@ -10,12 +10,12 @@ use DateTime;
 /**
  * @property int id
  * @property string title
- * @property string studio
- * @property string genre
- * @property string description
- * @property int episode_count
- * @property DateTime air_date_start
- * @property DateTime air_date_end
+ * @property ?string studio
+ * @property ?string genre
+ * @property ?string description
+ * @property ?int episode_count
+ * @property ?DateTime air_date_start
+ * @property ?DateTime air_date_end
  * @property DateTime created_at
  * @property DateTime updated_at
  */
@@ -32,6 +32,17 @@ class Anime extends Model
         'air_date_end',
         'created_at',
         'updated_at'
+    ];
+
+    public static $genres = [
+        'Action',
+        'Fantasy',
+        'Comedy',
+        'Sports',
+        'Drama',
+        'Romance',
+        'Sci-Fi',
+        'Slice of Life'
     ];
 
     public function __construct(array $data)

@@ -138,13 +138,90 @@ html {
 
 /* END LAYOUTS */
 
-/* CARDS */
+/* ANIME FILTERS */
+
+.anime-filter {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.8rem;
+}
+
+.anime-filter input {
+    background-color: var(--light-grey);
+    color: var(--gray-200);
+}
+
+.anime-filter input::placeholder {
+    color: var(--gray-300);
+}
+
+.anime-filter select {
+    background-color: var(--light-grey);
+    color: var(--gray-200);
+}
+
+.anime-filter__button {
+    background-color: var(--primary);
+    border-radius: 0.25rem;
+    height: 18px;
+}
+
+.anime-filter__button:hover {
+    background-color: var(--blue-600);
+}
+
+.anime-filter__button:active {
+    background-color: var(--blue-600);
+}
+
+@media all and (max-width: 700px) {
+    .anime-filter {
+        gap: 0.5rem;
+    }
+}
+
+@media all and (min-width: 700px) {
+    .anime-filter {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.anime-filter__filter {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.anime-filter__search {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+@media all and (min-width: 700px) {
+    .anime-filter__search {
+        justify-content: flex-end;
+    }
+}
+
+/* END ANIME FILTERS */
+
+/* ANIME CARDS */
 
 .cards-anime {
     display: grid;
     grid-auto-flow: row;
     gap: 1rem;
     grid-template-columns: repeat(1, minmax(0, 1fr));
+    padding: 0.5rem 0;
+}
+
+@media all and (max-width: 600px) {
+    .cards-anime {
+        padding: 0 0.5rem;
+    }
 }
 
 @media all and (min-width: 600px) {

@@ -6,6 +6,5 @@ $meta['layout'] = 'withnavbar';
 
 ?>
 
-<?php
-
-render_component('list/list');
+<?php render_component('anime-list/filter'); ?>
+<?php render_component('anime-list/list'); ?>
