@@ -63,26 +63,16 @@ class Anime extends Model
     }
 
     public static function create(array $data): int {
-        /* check for null title */
-        if (!array_key_exists('title', $data)) {
-            return 0;
-        }
+        $columns = array_keys($data);
+        $values = array_values($data);
 
-        try {
-            $columns = array_keys($data);
-            $values = array_values($data);
-    
-            /* execute query, insert values */
-            static::$connection->executeStatement(
-                "INSERT INTO anime (" . implode(', ', $columns) . ") VALUES (" . str_repeat('?, ', count($values) - 1) . "?)",
-                $values
-            );
-    
-            return static::$connection->rowCount();
-        } catch (PDOException $e) {
-            /* failed query, invalid key-value pairs */
-            return 0;
-        }
+        /* execute query, insert values */
+        static::$connection->executeStatement(
+            "INSERT INTO anime (" . implode(', ', $columns) . ") VALUES (" . str_repeat('?, ', count($values) - 1) . "?)",
+            $values
+        );
+
+        return static::$connection->rowCount();
     }
 
     public static function remove(int $id)
@@ -94,20 +84,22 @@ class Anime extends Model
     }
 
     public static function update(int $id, array $data): int {
-        try {
-            $columns = array_keys($data);
-            $values = array_values($data);
-    
-            /* execute query, insert values */
-            static::$connection->executeStatement(
-                "UPDATE anime SET (" . implode(', ', $columns) . ") = (" . str_repeat('?, ', count($values) - 1) . "?) WHERE id = ?",
-                array_merge($values, array($id))
-            );
-    
-            return static::$connection->rowCount();
-        } catch (PDOException $e) {
-            /* failed query, invalid key-value pairs */
-            return 0;
+        $columns = array_keys($data);
+        $values = array_values($data);
+
+        /* update values */
+        $update_set = '';
+        foreach ($columns as $col) {
+            $update_set .= "$col = ?, ";
         }
+        $update_set = substr($update_set, 0, -2);
+
+        /* execute query, update values */
+        static::$connection->executeStatement(
+            "UPDATE anime SET $update_set WHERE id = ?",
+            array_merge($values, array($id))
+        );
+
+        return static::$connection->rowCount();
     }
 }
