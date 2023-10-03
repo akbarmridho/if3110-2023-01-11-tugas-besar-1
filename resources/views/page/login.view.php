@@ -26,6 +26,9 @@ $meta['css'][] = 'page/login';
             </svg>
         </label>
         <input type="password" name="password" placeholder="Password" id="password" required>
+        <?php if (isset($error)): ?>
+            <p class="text-danger"><?= $error ?></p>
+        <?php endif ?>
         <input type="submit" value="Login">
     </form>
 </div>

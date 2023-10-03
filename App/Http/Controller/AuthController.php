@@ -32,8 +32,7 @@ class AuthController extends BaseController
             $user = User::findByUsername($username);
 
             if ($user === NULL || !password_verify($password, $user->password)) {
-                echo "wrong password";
-                render('login');
+                render('login', ['error' => 'Username or password is incorrect']);
             } else {
                 Session::login($user);
                 redirect('');

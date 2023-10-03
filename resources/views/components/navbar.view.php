@@ -11,7 +11,7 @@
             <li class="navlink"><a href="/">Profile</a></li>
             <li class="navlink">
                 <form action="/logout" method="post">
-                    <button type="submit">Logout</button>
+                    <button type="submit" class="btn btn-danger">Logout</button>
                 </form>
             </li>
         <?php else: ?>

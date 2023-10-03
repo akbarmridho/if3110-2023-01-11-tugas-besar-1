@@ -1,9 +1,13 @@
 /* Color Variables */
 :root {
-    --primary: #2e51a2
+    --primary: #2e51a2;
+    --red-700: #b91c1c;
+    --red-600: #dc2626;
+    --red-500: #ef4444;
 }
 
 /* CSS Reset */
+
 html {
     box-sizing: border-box;
     font-size: 16px;
@@ -13,19 +17,100 @@ html {
     box-sizing: inherit;
 }
 
-html, body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+button {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+ol,
+ul {
+    list-style: none;
     margin: 0;
     padding: 0;
-    font-weight: normal;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-ol, ul {
-    list-style: none;
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
-img {
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block;
+    vertical-align: middle;
+}
+
+img,
+video {
     max-width: 100%;
     height: auto;
 }
 
+*,
+::before,
+::after {
+    border-width: 0;
+    border-style: solid;
+    border-color: black;
+}
+
+.btn {
+    /* padding x 8px paddding y 16px */
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    transition: background-color 0.2s;
+}
+
+.btn-danger {
+    color: white;
+    background-color: var(--red-600);
+}
+
+.btn-danger:hover {
+    background-color: var(--red-500);
+}
+
+.btn-danger:active {
+    background-color: var(--red-700);
+}
+
+.text-danger {
+    color: var(--red-600);
+}
