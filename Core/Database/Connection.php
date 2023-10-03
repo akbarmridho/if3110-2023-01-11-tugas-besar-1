@@ -9,6 +9,8 @@ use PDOStatement;
 
 class Connection
 {
+    protected int $affectedRowCount = 0;
+
     public function __construct(protected PDO $pdo)
     {
     }
@@ -21,8 +23,14 @@ class Connection
     {
         $statement = $this->pdo->prepare($sql);
         $statement->execute($parameters);
+        $this->affectedRowCount = $statement->rowCount();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function rowCount(): int
+    {
+        return $this->affectedRowCount;
     }
 
     /**
