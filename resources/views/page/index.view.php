@@ -6,4 +6,6 @@ $meta['layout'] = 'withnavbar';
 
 ?>
 
-Hello, frieren!
+<?php
+
+render_component('list/list');

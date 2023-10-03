@@ -1,16 +1,32 @@
-/* Color Variables */
+/* Variables */
 :root {
+    /* Colors */
     --primary: #2e51a2;
     --red-700: #b91c1c;
     --red-600: #dc2626;
     --red-500: #ef4444;
+    --light-grey: #303030;
+    --dark-grey: #1a1a1a;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+
+    --blue-500: #2e51a2;
+    --blue-600: #3f5993;
+
+    --blue-link: #b2c8f0;
+
+    /* Size */
+    --screen-lg: 1024px;
+    --screen-md: 640px;
+    --screen-sm: 400px;
 }
 
 /* CSS Reset */
 
 html {
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 1rem;
+    color: var(--gray-200);
 }
 
 *, *:before, *:after {
@@ -87,11 +103,157 @@ video {
     border-color: black;
 }
 
+/** END CSS RESET */
+
+/* FONTS */
+
+.font-semibold {
+    font-weight: 500;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.text-white {
+    color: white;
+}
+
+/* END FONTS */
+
+/* LAYOUTS */
+
+html * {
+    font-family: 'Roboto', sans-serif;
+}
+
+main {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+html {
+    background-color: var(--dark-grey);
+}
+
+/* END LAYOUTS */
+
+/* CARDS */
+
+.cards-anime {
+    display: grid;
+    grid-auto-flow: row;
+    gap: 1rem;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media all and (min-width: 600px) {
+    .cards-anime {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media all and (min-width: 920px) {
+    .cards-anime {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.card-anime {
+    min-width: 300px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--dark-grey);
+    border-color: var(--light-grey);
+    border-style: solid;
+    border-width: 2px;
+}
+
+.card-anime-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.25rem 0;
+    color: var(--blue-link);
+}
+
+.card-anime-title a:hover {
+    text-decoration: underline;
+}
+
+.card-anime-sub {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    padding: 0.5rem 0;
+    color: var(--gray-300);
+}
+
+.card-anime-release {
+    text-align: right;
+}
+
+.card-anime-body {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.25rem;
+    min-height: 250px;
+    max-height: 320px;
+}
+
+.card-anime-poster img {
+    object-fit: contain;
+}
+
+.card-anime-description {
+    overflow-y: hidden;
+    font-size: 0.75rem;
+    padding: 0 0.25rem;
+}
+
+.card-anime-description:hover {
+    overflow-y: auto;
+}
+
+.card-anime-footer {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 0.5rem;
+    padding-top: 0.25rem;
+}
+
+.card-anime-action {
+    grid-column: span 2;
+    text-align: center;
+}
+
+.card-anime-rating {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.card-anime-members {
+    display: flex;
+    gap: 0.25rem;
+}
+
+/* END CARDS */
+
 .btn {
     /* padding x 8px paddding y 16px */
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     transition: background-color 0.2s;
+}
+
+.btn-small {
+    font-size: 0.8rem;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
 }
 
 .btn:hover {
@@ -109,6 +271,19 @@ video {
 
 .btn-danger:active {
     background-color: var(--red-700);
+}
+
+.btn-primary {
+    color: white;
+    background-color: var(--blue-500);
+}
+
+.btn-primary:hover {
+    background-color: var(--blue-600);
+}
+
+.btn-primary:active {
+    background-color: var(--blue-600);
 }
 
 .text-danger {

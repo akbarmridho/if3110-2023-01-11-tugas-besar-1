@@ -25,6 +25,11 @@ function assets(string $name)
     return "/assets/" . $name;
 }
 
+function storage(string $name)
+{
+    return "/storage/" . $name;
+}
+
 function hash_password(string $password): string
 {
     return password_hash($password, PASSWORD_BCRYPT);

@@ -1,13 +1,13 @@
 .login {
     width: 400px;
-    background-color: #ffffff;
+    background-color: var(--light-grey);
     box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
     margin: 100px auto;
 }
 
 .login h1 {
     text-align: center;
-    color: #5b6574;
+    color: white;
     font-size: 24px;
     padding: 20px 0 20px 0;
     border-bottom: 1px solid #dee0e4;
@@ -26,7 +26,7 @@
     align-items: center;
     width: 50px;
     height: 50px;
-    background-color: #3274d6;
+    background-color: var(--primary);
     color: #ffffff;
 }
 
@@ -42,7 +42,7 @@
     width: 100%;
     padding: 15px;
     margin-top: 20px;
-    background-color: #3274d6;
+    background-color: var(--primary);
     border: 0;
     cursor: pointer;
     font-weight: bold;
