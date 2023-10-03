@@ -222,6 +222,10 @@ html {
     .cards-anime {
         padding: 0 0.5rem;
     }
+
+    .anime-filter {
+        padding: 0 0.5rem;
+    }
 }
 
 @media all and (min-width: 600px) {
@@ -319,6 +323,32 @@ html {
 }
 
 /* END CARDS */
+
+/* PAGINATION */
+
+/*.mx-auto {*/
+/*    margin: 0 auto;*/
+/*}*/
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 0.75rem 0;
+    gap: 0.5rem;
+}
+
+.pagination-link {
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--gray-300);
+}
+
+.pagination-link.active {
+    background-color: var(--primary);
+}
+
+/* END PAGINATION */
 
 .btn {
     /* padding x 8px paddding y 16px */
