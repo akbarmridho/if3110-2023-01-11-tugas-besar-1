@@ -6,6 +6,7 @@ use Core\Base\Model;
 use Core\App;
 use Core\Database\Connection;
 use DateTime;
+use PDOException;
 
 /**
  * @property int $id
@@ -58,6 +59,47 @@ class User extends Model
         }
 
         return new User($result[0]);
+    }
+
+    public static function create(array $data): int {
+        $columns = array_keys($data);
+        $values = array_values($data);
+
+        /* execute query, insert values */
+        static::$connection->executeStatement(
+            "INSERT INTO user_data (" . implode(', ', $columns) . ") VALUES (" . str_repeat('?, ', count($values) - 1) . "?)",
+            $values
+        );
+
+        return static::$connection->rowCount();
+    }
+
+    public static function remove(int $id)
+    {
+        /* execute query, find and delete selected id */
+        $result = static::$connection->executeStatement('DELETE FROM user_data WHERE id = :id;', ['id' => $id]);
+
+        return static::$connection->rowCount();
+    }
+
+    public static function update(int $id, array $data): int {
+        $columns = array_keys($data);
+        $values = array_values($data);
+
+        /* update values */
+        $update_set = '';
+        foreach ($columns as $col) {
+            $update_set .= "$col = ?, ";
+        }
+        $update_set = substr($update_set, 0, -2);
+
+        /* execute query, update values */
+        static::$connection->executeStatement(
+            "UPDATE user_data SET $update_set WHERE id = ?",
+            array_merge($values, array($id))
+        );
+
+        return static::$connection->rowCount();
     }
 }
 
