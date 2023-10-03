@@ -59,13 +59,13 @@ CREATE TABLE IF NOT EXISTS User_Anime (
 );
 
 CREATE TABLE IF NOT EXISTS Review (
-    anime_id INTEGER REFERENCES Anime(id) ON DELETE CASCADE,
+    id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES User_Data(id) ON DELETE CASCADE,
+    anime_id INTEGER REFERENCES Anime(id) ON DELETE CASCADE,
     review TEXT,
     rating INTEGER CHECK (rating >= 1 AND rating <= 10),
 
     created_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP DEFAULT NOW(),
-    PRIMARY KEY(anime_id, user_id)
+    updated_at TIMESTAMP DEFAULT NOW()
 );
 

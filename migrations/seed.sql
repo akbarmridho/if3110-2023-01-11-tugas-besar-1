@@ -59,8 +59,8 @@ VALUES (2, 2, 'WATCHED');
 
 
 -- review
-INSERT INTO review(anime_id, user_id, review, rating)
-VALUES (2, 1, 'very good', 10);
+INSERT INTO review(id, user_id, anime_id, review, rating)
+VALUES (1, 1, 2, 'very good', 10);
 
-INSERT INTO review(anime_id, user_id, review, rating)
-VALUES (2, 2, 'good', 9);
+INSERT INTO review(id, user_id, anime_id, review, rating)
+VALUES (2, 2, 2, 'good', 9);
