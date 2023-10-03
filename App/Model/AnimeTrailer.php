@@ -31,5 +31,38 @@ class AnimeTrailer extends Model
 
         return array_map(fn($row) => new AnimeTrailer($row), $result);
     }
+
+    public static function create(int $anime_id, string $trailer): int 
+    {
+        /* execute query, insert values */
+        static::$connection->executeStatement(
+            "INSERT INTO anime_trailer (anime_id, trailer) VALUES (:anime_id, :trailer)",
+            ['anime_id' => $anime_id, 'trailer' => $trailer]
+        );
+
+        return static::$connection->rowCount();
+    }
+
+    public static function removeAll(int $anime_id): int
+    {
+        /* execute query, find and delete selected id */
+        $result = static::$connection->executeStatement(
+            'DELETE FROM anime_trailer WHERE anime_id = :anime_id', 
+            ['anime_id' => $anime_id]
+        );
+
+        return static::$connection->rowCount();
+    }
+
+    public static function remove(int $anime_id, string $trailer): int
+    {
+        /* execute query, find and delete selected id */
+        $result = static::$connection->executeStatement(
+            'DELETE FROM anime_trailer WHERE anime_id = :anime_id AND trailer = :trailer', 
+            ['anime_id' => $anime_id, 'trailer' => $trailer]
+        );
+
+        return static::$connection->rowCount();
+    }
 }
 

@@ -31,5 +31,38 @@ class AnimePoster extends Model
 
         return array_map(fn($row) => new AnimePoster($row), $result);
     }
+
+    public static function create(int $anime_id, string $poster): int 
+    {
+        /* execute query, insert values */
+        static::$connection->executeStatement(
+            "INSERT INTO anime_poster (anime_id, poster) VALUES (:anime_id, :poster)",
+            ['anime_id' => $anime_id, 'poster' => $poster]
+        );
+
+        return static::$connection->rowCount();
+    }
+
+    public static function removeAll(int $anime_id): int
+    {
+        /* execute query, find and delete selected id */
+        $result = static::$connection->executeStatement(
+            'DELETE FROM anime_poster WHERE anime_id = :anime_id', 
+            ['anime_id' => $anime_id]
+        );
+
+        return static::$connection->rowCount();
+    }
+
+    public static function remove(int $anime_id, string $poster): int
+    {
+        /* execute query, find and delete selected id */
+        $result = static::$connection->executeStatement(
+            'DELETE FROM anime_poster WHERE anime_id = :anime_id AND poster = :poster', 
+            ['anime_id' => $anime_id, 'poster' => $poster]
+        );
+
+        return static::$connection->rowCount();
+    }
 }
 
