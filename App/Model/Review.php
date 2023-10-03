@@ -7,8 +7,9 @@ use Core\App;
 use Core\Database\Connection;
 
 /**
- * @property int anime_id
+ * @property int id
  * @property int user_id
+ * @property int anime_id
  * @property string review
  * @property int rating
  * @property DateTime created_at
@@ -19,14 +20,30 @@ class Review extends Model
     public function __construct(array $data)
     {
         $this->attributes = array(
-            'anime_id',
+            'id',
             'user_id',
+            'anime_id',
             'review',
             'rating',
             'created_at',
             'updated_at'
         );
         $this->data = $data;
+    }
+
+    public static function findById(int $id): null|Review {
+        /* create a connection */
+        $connection = App::get('database');
+        assert($connection instanceof Connection);
+
+        /* execute query, fetch one row */
+        $result = $connection->executeStatement('SELECT * FROM Review WHERE id = :id', ['id' => $id]);
+        if (empty($result))
+        {
+            return null;
+        }
+
+        return new Review($result[0]);
     }
 
     public static function findByUserId(int $id) {
