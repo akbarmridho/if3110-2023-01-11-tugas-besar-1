@@ -6,6 +6,7 @@ use Core\Base\Model;
 use Core\App;
 use Core\Database\Connection;
 use DateTime;
+use PDOException;
 
 /**
  * @property int id
@@ -60,5 +61,53 @@ class Anime extends Model
 
         return new Anime($result[0]);
     }
-}
 
+    public static function create(array $data): int {
+        /* check for null title */
+        if (!array_key_exists('title', $data)) {
+            return 0;
+        }
+
+        try {
+            $columns = array_keys($data);
+            $values = array_values($data);
+    
+            /* execute query, insert values */
+            static::$connection->executeStatement(
+                "INSERT INTO anime (" . implode(', ', $columns) . ") VALUES (" . str_repeat('?, ', count($values) - 1) . "?)",
+                $values
+            );
+    
+            return static::$connection->rowCount();
+        } catch (PDOException $e) {
+            /* failed query, invalid key-value pairs */
+            return 0;
+        }
+    }
+
+    public static function remove(int $id)
+    {
+        /* execute query, find and delete selected id */
+        $result = static::$connection->executeStatement('DELETE FROM anime WHERE id = :id;', ['id' => $id]);
+
+        return static::$connection->rowCount();
+    }
+
+    public static function update(int $id, array $data): int {
+        try {
+            $columns = array_keys($data);
+            $values = array_values($data);
+    
+            /* execute query, insert values */
+            static::$connection->executeStatement(
+                "UPDATE anime SET (" . implode(', ', $columns) . ") = (" . str_repeat('?, ', count($values) - 1) . "?) WHERE id = ?",
+                array_merge($values, array($id))
+            );
+    
+            return static::$connection->rowCount();
+        } catch (PDOException $e) {
+            /* failed query, invalid key-value pairs */
+            return 0;
+        }
+    }
+}
