@@ -136,10 +136,11 @@ class Anime extends Model
                     FROM anime_poster
                     WHERE anime_poster.anime_id = a.id
                     LIMIT 1
-                ) as poster
+                ) as poster,
+                COALESCE(o_members, 0) as members
                 FROM anime a
                 LEFT JOIN (
-                    SELECT COUNT(ua.user_id) as members, ua.anime_id as anime_id
+                    SELECT COUNT(ua.user_id) as o_members, ua.anime_id as anime_id
                     FROM user_anime ua
                     GROUP BY ua.anime_id
                 ) m ON a.id = m.anime_id
@@ -149,7 +150,13 @@ class Anime extends Model
                     GROUP BY r.anime_id
                 ) re ON a.id = re.anime_id';
 
-        $sqlCount = 'SELECT COUNT(*) as count FROM anime a';
+        $sqlCount = 'SELECT COUNT(*) as count 
+                     FROM anime a
+                     LEFT JOIN (
+                     SELECT AVG(r.rating) as rating, r.anime_id as anime_id
+                     FROM review r
+                     GROUP BY r.anime_id
+                     ) re ON a.id = re.anime_id';
 
         $parameters = [];
         $where = [];
@@ -177,8 +184,17 @@ class Anime extends Model
         }
 
         if ($q !== '') {
-            $where[] = $search_by . ' = :q';
-            $parameters['q'] = $q;
+            $where[] = $search_by . ' ILIKE :q';
+            $parameters['q'] = '%' . $q . '%';
+        }
+
+        if ($sort_by === 'rating') {
+            $where[] = 'rating is not null';
+        }
+
+        if (count($where) !== 0) {
+            $sql = $sql . ' WHERE ';
+            $sqlCount = $sqlCount . ' WHERE ';
         }
 
         $sql = $sql . implode(' AND ', $where);

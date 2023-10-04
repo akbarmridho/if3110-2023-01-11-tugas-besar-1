@@ -257,7 +257,11 @@ html {
     font-weight: 500;
     text-align: center;
     padding: 0.25rem 0;
+}
+
+.card-anime-title a {
     color: var(--blue-link);
+    text-decoration: none;
 }
 
 .card-anime-title a:hover {
