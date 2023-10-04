@@ -55,7 +55,14 @@ $meta['css'][] = 'page/animedetail';
                     <h2 class="font-bold">Trailer</h2>
                     insert video
                     <h2 class="font-bold">Review</h2>
-                    <?php render_component('reviews/reviewlist', ['data' => Review::findByAnimeId($anime->id)])?>
+                    <?php 
+                        $reviews = Review::findByAnimeId($anime->id);
+                        if (is_null($reviews)) {
+                            echo "No reviews found";
+                        } else {
+                            render_component('reviews/reviewlist', ['data' => $reviews]);
+                        }
+                    ?>
                 </td>
             </tr>
         </tbody>

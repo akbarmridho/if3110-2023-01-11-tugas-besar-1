@@ -400,3 +400,25 @@ html {
 .text-danger {
     color: var(--red-600);
 }
+
+/* REVIEW COMPONENT */
+.review {
+    border-bottom: 1px solid var(--light-grey);
+    padding-top: 0.25rem;
+    padding-left: 0.25rem;
+    margin-top: 0.4rem;
+}
+
+.review-head {
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-rating {
+    margin-bottom: 1rem;
+}
+
+.review-content {
+    margin-bottom: 1.5rem;
+}

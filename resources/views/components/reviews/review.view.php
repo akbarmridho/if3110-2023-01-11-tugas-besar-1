@@ -2,10 +2,17 @@
 /** @var \App\Model\Review $review */
 ?>
 
-<div>
-    <?= $review->user_id ?><br>
-    <?= $review->review ?><br>
-    <?= $review->rating ?><br>
-    <?= $review->created_at ?><br>
-    <?= $review->updated_at ?><br>
+<div class="review">
+    <div class="review-head">
+        <span class="review-user"><a href="#">User with id <?=$review->user_id?></a></span>
+        <span class="review-update-time">Last updated <?= date('Y-m-d', strtotime(strval($review->updated_at))) ?></span>
+    </div>
+    <div class="review-rating">
+        <span class='font-semibold'>Rating:</span>
+        <span><?= $review->rating ?><br></span>
+
+    </div>
+    <div class="review-content">
+        <?= $review->review ?><br>
+    </div>
 </div>
