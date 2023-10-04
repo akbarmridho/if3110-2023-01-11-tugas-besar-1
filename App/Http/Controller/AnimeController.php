@@ -51,6 +51,6 @@ class AnimeController extends BaseController
 
     public function view(Request $request)
     {
-        echo "Anime dengan id " . $request->getRouteParam('id');
+        render('animedetail', ['anime' => Anime::findById($request->getRouteParam('id'))]);
     }
 }

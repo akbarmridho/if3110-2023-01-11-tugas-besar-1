@@ -68,7 +68,10 @@ class Anime extends Model
     public static function findById(int $id): null|Anime
     {
         /* execute query, fetch one row */
-        $result = static::$connection->executeStatement('SELECT * FROM Anime WHERE id = :id', ['id' => $id]);
+        $result = static::$connection->executeStatement(
+            'SELECT * FROM Anime A LEFT JOIN Anime_Poster AP ON A.id = AP.anime_id LEFT JOIN Anime_Trailer AT ON A.id = AT.anime_id WHERE id = :id', 
+            ['id' => $id]
+        );
         if (empty($result)) {
             return null;
         }
