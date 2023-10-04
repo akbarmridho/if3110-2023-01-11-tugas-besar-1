@@ -62,5 +62,6 @@ select {
 
 .anime-manage {
     height: 50px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

@@ -2,6 +2,7 @@
 /** @var array $meta */
 
 use App\Model\Review;
+use Core\Session\Session;
 
 assert(isset($anime));
 
@@ -54,7 +55,11 @@ $meta['css'][] = 'page/animedetail';
                     <div><p><?= $anime->description ?? 'No summary available'?></p></div>
                     <h2 class="font-bold">Trailer</h2>
                     insert video
-                    <h2 class="font-bold">Review</h2>
+                    <?php if(Session::isAuthenticated() && is_null(Review::findByUserIdAnimeId(Session::$user->id, $anime->id))) : ?>
+                        <h2 class="font-bold">My Review</h2>
+                        todo: add review component<br>
+                    <?php endif ?>
+                    <h2 class="font-bold">Reviews</h2>
                     <?php 
                         $reviews = Review::findByAnimeId($anime->id);
                         if (is_null($reviews)) {
