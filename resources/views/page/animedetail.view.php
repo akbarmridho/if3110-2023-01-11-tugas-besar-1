@@ -1,6 +1,8 @@
 <?php
 /** @var array $meta */
 
+use App\Model\Review;
+
 assert(isset($anime));
 
 $meta['title'] = 'ListWibuKu - ' . $anime->title;
@@ -50,10 +52,10 @@ $meta['css'][] = 'page/animedetail';
                     </div>
                     <h2 class="font-bold">Description</h2>
                     <div><p><?= $anime->description ?? 'No summary available'?></p></div>
-                    <h2>Trailer</h2>
+                    <h2 class="font-bold">Trailer</h2>
                     insert video
-                    <h2>Review</h2>
-                    insert reviews
+                    <h2 class="font-bold">Review</h2>
+                    <?php render_component('reviews/reviewlist', ['data' => Review::findByAnimeId($anime->id)])?>
                 </td>
             </tr>
         </tbody>

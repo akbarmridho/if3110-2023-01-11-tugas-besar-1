@@ -3,6 +3,7 @@
 namespace App\Http\Controller;
 
 use App\Model\Anime;
+use App\Model\Review;
 use Core\Base\BaseController;
 use Core\Http\Request;
 use Core\Session\Session;
@@ -51,6 +52,6 @@ class AnimeController extends BaseController
 
     public function view(Request $request)
     {
-        render('animedetail', ['anime' => Anime::findById($request->getRouteParam('id'))]);
+        render('animedetail', ['anime' => Anime::findById($request->getRouteParam('id')), 'review' => Review::findByAnimeId($request->getRouteParam('id'))]);
     }
 }
