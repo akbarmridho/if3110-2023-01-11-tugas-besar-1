@@ -18,7 +18,7 @@ abstract class Model
 
     public function __get(string $key): mixed
     {
-        if (array_key_exists($key, $this->attributes)) {
+        if (in_array($key, $this->attributes)) {
             return $this->data[$key];
         } else if (array_key_exists($key, $this->relationalAttributes)) {
             if (array_key_exists($key, $this->data)) {
