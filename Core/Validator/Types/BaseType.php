@@ -5,9 +5,12 @@ namespace Core\Validator\Types;
 use Core\Exception\ValidationException;
 use Core\Validator\Rules\BaseRule;
 
-class BaseType
+abstract class BaseType
 {
-    public function __construct(public bool $required = false, public bool $nullable = false, protected array $rules = [])
+    public function __construct(public bool     $required = false,
+                                public bool     $nullable = false,
+                                protected array $rules = [],
+                                protected bool  $shouldCast = false)
     {
         foreach ($rules as $rule) {
             if (!($rule instanceof BaseRule)) {
@@ -24,6 +27,10 @@ class BaseType
      */
     public function isValid(mixed $data): bool|array
     {
+        if ($this->shouldCast) {
+            $data = $this->cast($data);
+        }
+
         $errorMessages = [];
 
         foreach ($this->rules as $rule) {
@@ -40,4 +47,6 @@ class BaseType
 
         return $errorMessages;
     }
+
+    abstract protected function cast(mixed $data): mixed;
 }
