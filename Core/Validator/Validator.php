@@ -19,7 +19,7 @@ class Validator
 
             if (!array_key_exists($key, $data) && $rule->required) {
                 $errorMessages[$key] = ["Property $key is required"];
-            } else {
+            } else if (array_key_exists($key, $data)) {
                 $propertyData = $data[$key];
 
                 if ($rule->nullable && empty($propertyData)) {

@@ -28,8 +28,6 @@ function render(string $name, $data = []): void
 
 function render_component(string $name, array $data = [])
 {
-    $name = str_replace(".", "/", $name);
-
     extract($data);
 
     require __DIR__ . "/../../resources/views/components/$name.view.php";

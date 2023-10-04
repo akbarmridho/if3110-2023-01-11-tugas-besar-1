@@ -19,6 +19,12 @@ use PDOException;
  * @property ?DateTime air_date_end
  * @property DateTime created_at
  * @property DateTime updated_at
+ *
+ * @property ?float rating
+ * @property ?int members
+ * @property ?string poster
+ * @property ?AnimePoster[] posters
+ * @property ?AnimeTrailer[] trailers
  */
 class Anime extends Model
 {
@@ -35,7 +41,15 @@ class Anime extends Model
         'updated_at'
     ];
 
-    public static $genres = [
+    protected array $relationalAttributes = [
+        'rating',
+        'members',
+        'poster',
+        'posters',
+        'trailers'
+    ];
+
+    public static array $genres = [
         'Action',
         'Fantasy',
         'Comedy',
@@ -62,7 +76,7 @@ class Anime extends Model
         return new Anime($result[0]);
     }
 
-    public static function create(array $data): int 
+    public static function create(array $data): int
     {
         $columns = array_keys($data);
         $values = array_values($data);
@@ -84,7 +98,7 @@ class Anime extends Model
         return static::$connection->rowCount();
     }
 
-    public static function update(int $id, array $data): int 
+    public static function update(int $id, array $data): int
     {
         $columns = array_keys($data);
         $values = array_values($data);
@@ -103,5 +117,83 @@ class Anime extends Model
         );
 
         return static::$connection->rowCount();
+    }
+
+    public static function findAll(
+        int    $userId = null,
+        string $genre = 'all',
+        string $status = 'all',
+        string $sort_by = 'members',
+        string $search_by = 'title',
+        string $sort = 'asc',
+        string $q = '',
+        int    $page = 1,
+        int    $limit = 20
+    ): array
+    {
+        $sql = 'SELECT *, (
+                    SELECT poster
+                    FROM anime_poster
+                    WHERE anime_poster.anime_id = a.id
+                    LIMIT 1
+                ) as poster
+                FROM anime a
+                LEFT JOIN (
+                    SELECT COUNT(ua.user_id) as members, ua.anime_id as anime_id
+                    FROM user_anime ua
+                    GROUP BY ua.anime_id
+                ) m ON a.id = m.anime_id
+                LEFT JOIN (
+                    SELECT AVG(r.rating) as rating, r.anime_id as anime_id
+                    FROM review r
+                    GROUP BY r.anime_id
+                ) re ON a.id = re.anime_id';
+
+        $sqlCount = 'SELECT COUNT(*) as count FROM anime a';
+
+        $parameters = [];
+        $where = [];
+
+        if ($genre !== 'all') {
+            $where[] = 'genre = :genre';
+            $parameters['genre'] = $genre;
+        }
+
+        if ($status !== 'all' && $userId !== null) {
+            $idsRaw = static::$connection->executeStatement('SELECT anime_id FROM user_anime WHERE status = :status',
+                [
+                    'status' => $status
+                ]);
+
+            $ids = array_map(fn($row): int => $row['anime_id'], $idsRaw);
+
+            // asume valid and safe ids so we don't consider possible sql injection here
+
+            if (count($ids) === 0) {
+                $where[] = '1 = 2';
+            } else {
+                $where[] = 'id IN (' . implode(', ', $ids) . ')';
+            }
+        }
+
+        if ($q !== '') {
+            $where[] = $search_by . ' = :q';
+            $parameters['q'] = $q;
+        }
+
+        $sql = $sql . implode(' AND ', $where);
+        $sqlCount = $sqlCount . implode(' AND ', $where);
+
+        $sql = $sql . ' ORDER BY ' . $sort_by . ' ' . $sort;
+        $sql = $sql . ' OFFSET ' . ($page - 1) * $limit . ' LIMIT ' . $limit;
+
+        $animeResult = static::$connection->executeStatement($sql, $parameters);
+        $countResult = static::$connection->executeStatement($sqlCount, $parameters);
+
+        return [
+            'data' => array_map(fn($data): Anime => new Anime($data), $animeResult),
+            'totalPage' => ceil($countResult[0]['count'] / $limit),
+            'count' => $countResult[0]['count']
+        ];
     }
 }

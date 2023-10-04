@@ -1,8 +1,7 @@
 <?php
 
-\Core\Router\Router::get("", [], \App\Http\Controller\HelloController::class, 'hello');
-\Core\Router\Router::get("fern", [], \App\Http\Controller\HelloController::class, 'helloFern');
-\Core\Router\Router::get("hello/{name}/{age}", [], \App\Http\Controller\HelloController::class, 'helloName');
+\Core\Router\Router::get("", [], \App\Http\Controller\AnimeController::class, 'index');
+\Core\Router\Router::get('anime/{id}', [], \App\Http\Controller\AnimeController::class, 'view');
 
 \Core\Router\Router::get("login", [\App\Http\Middleware\Guest::class], \App\Http\Controller\AuthController::class, 'loginView');
 \Core\Router\Router::post("login", [\App\Http\Middleware\Guest::class], \App\Http\Controller\AuthController::class, 'login');

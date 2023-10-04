@@ -20,7 +20,7 @@ abstract class Model
     {
         if (in_array($key, $this->attributes)) {
             return $this->data[$key];
-        } else if (array_key_exists($key, $this->relationalAttributes)) {
+        } else if (in_array($key, $this->relationalAttributes)) {
             if (array_key_exists($key, $this->data)) {
                 return $this->data[$key];
             }

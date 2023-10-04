@@ -32,13 +32,27 @@
                 </select>
             </div>
             <div>
+                <label for="sort">Sort</label>
+                <select id="sort" name="sort">
+                    <option selected value="desc">
+                        Desc
+                    </option>
+                    <option value="asc">
+                        Asc
+                    </option>
+                </select>
+            </div>
+            <div>
                 <label for="sort_by">Sort By</label>
                 <select id="sort_by" name="sort_by">
                     <option selected value="members">
                         Members
                     </option>
-                    <option value="Rating">
+                    <option value="rating">
                         Rating
+                    </option>
+                    <option value="air_date_start">
+                        Release
                     </option>
                 </select>
             </div>

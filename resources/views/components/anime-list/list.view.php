@@ -1,7 +1,8 @@
 <section class="cards-anime">
     <?php
-    for ($i = 0; $i < 10; $i++) {
-        render_component('anime-list/card');
+    /* @var array $data */
+    foreach ($data as $anime) {
+        render_component('anime-list/card', ['anime' => $anime]);
     }
     ?>
 </section>
