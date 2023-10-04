@@ -22,9 +22,9 @@ class Validator
             } else {
                 $propertyData = $data[$key];
 
-                if ($rule->nullable && is_null($propertyData)) {
+                if ($rule->nullable && empty($propertyData)) {
                     $validatedData[$key] = null;
-                } else if (!$rule->nullable && is_null($propertyData)) {
+                } else if (!$rule->nullable && empty($propertyData)) {
                     $errorMessages[$key] = ["Property $key is not nullable"];
                 } else {
                     $result = $rule->isValid($propertyData);
