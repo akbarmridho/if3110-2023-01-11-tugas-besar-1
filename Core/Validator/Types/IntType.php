@@ -2,12 +2,12 @@
 
 namespace Core\Validator\Types;
 
-class StringType extends BaseType
+class IntType extends BaseType
 {
     public function isValid(mixed $data): bool|array
     {
-        if (!is_string($data) && !$this->shouldCast) {
-            return ["Data is not a string"];
+        if (!is_int($data) && !$this->shouldCast) {
+            return ["Data is not an integer"];
         }
 
         return parent::isValid($data);
@@ -15,6 +15,6 @@ class StringType extends BaseType
 
     protected function cast(mixed $data): mixed
     {
-        return strval($data);
+        return intval($data);
     }
 }

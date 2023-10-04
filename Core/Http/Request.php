@@ -37,6 +37,11 @@ class Request implements RequestInterface
         return $_POST;
     }
 
+    public function getQueryData(): array
+    {
+        return $_GET;
+    }
+
     /**
      * Get request URI
      *
