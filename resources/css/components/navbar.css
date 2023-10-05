@@ -48,6 +48,7 @@ header {
         background: var(--light-grey);
         position: absolute;
         right: -100%;
+        display: none;
         top: 70px;
         width: 35%;
         height: calc(100% - 70px);
@@ -63,6 +64,7 @@ header {
     }
 
     .nav-active {
+        display: block;
         right: 0;
     }
 }

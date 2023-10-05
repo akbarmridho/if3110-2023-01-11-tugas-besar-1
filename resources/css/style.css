@@ -285,12 +285,17 @@ html {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.25rem;
-    min-height: 250px;
-    max-height: 320px;
+    height: 275px;
+}
+
+.card-anime-poster {
+    height: 250px;
+    /*background-color: pink;*/
 }
 
 .card-anime-poster img {
     object-fit: contain;
+    height: 100%;
 }
 
 .card-anime-description {
