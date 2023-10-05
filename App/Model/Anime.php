@@ -86,7 +86,7 @@ class Anime extends Model
                 SELECT AVG(r.rating) as rating, r.anime_id as anime_id
                 FROM review r
                 GROUP BY r.anime_id
-            ) re ON a.id = re.anime_id WHERE a.id = :id', 
+            ) re ON a.id = re.anime_id WHERE a.id = :id',
             ['id' => $id]
         );
         if (empty($result)) {
@@ -185,7 +185,7 @@ class Anime extends Model
 
         return [
             'data' => array_map(fn($data): Anime => new Anime($data), $animeResult),
-            'totalPage' => ceil($countResult[0]['count'] / $limit),
+            'totalPage' => (int)ceil($countResult[0]['count'] / $limit),
             'count' => $countResult[0]['count']
         ];
     }

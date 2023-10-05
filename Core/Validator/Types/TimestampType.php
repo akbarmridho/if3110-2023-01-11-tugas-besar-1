@@ -4,7 +4,7 @@ namespace Core\Validator\Types;
 
 class TimestampType extends BaseType
 {
-    public function isValid(mixed $data): bool|array
+    public function isValid(mixed &$data): bool|array
     {
         if (!is_string($data) && !$this->shouldCast) {
             return ["Data is not a string"];

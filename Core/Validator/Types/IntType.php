@@ -4,7 +4,7 @@ namespace Core\Validator\Types;
 
 class IntType extends BaseType
 {
-    public function isValid(mixed $data): bool|array
+    public function isValid(mixed &$data): bool|array
     {
         if (!is_int($data) && !$this->shouldCast) {
             return ["Data is not an integer"];
