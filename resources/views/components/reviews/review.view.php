@@ -4,6 +4,7 @@
 ?>
 
 <div class="review">
+    <!-- todo: review editor -->
     <div class="review-head">
         <span class="review-user"><a href="/profile/<?= $review->user_id ?>"><?=($review->user_id)?></a></span>
         <span class="review-update-time">Last updated <?= date('Y-m-d', strtotime(strval($review->updated_at))) ?></span>

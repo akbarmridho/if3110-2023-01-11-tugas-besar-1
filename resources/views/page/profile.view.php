@@ -10,6 +10,7 @@ $meta['css'][] = 'page/profile';
 ?>
 
 <div class="user-profile">
+    <!-- todo: edit profile details -->
     <table>
         <thead>
             <tr class="content-header">
