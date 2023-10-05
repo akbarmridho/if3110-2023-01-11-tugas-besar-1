@@ -38,7 +38,7 @@ $meta['css'][] = 'page/animedetail';
                     <div class="anime-stats">
                         <div>
                             <span class="font-bold stats-category">Score</span>
-                            <span class="stats-value"><?= isset($anime->rating) ? number_format($anime->rating, 2) : 'N/A'?></span>
+                            <span class="stats-value"><?= $anime->rating ? number_format($anime->rating, 2, '.', '') : 'N/A' ?></span>
                             <span class="font-bold stats-category">Members</span>
                             <span class="stats-value"><?= $anime->members ?? 'N/A'?></span>
                         </div>
