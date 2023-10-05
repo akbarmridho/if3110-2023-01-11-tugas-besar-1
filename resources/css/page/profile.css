@@ -1,0 +1,32 @@
+h1 {
+    background-color: var(--light-grey, grey);
+    padding: 10px 10px;
+    margin-top: 2px;
+    border-bottom: 2px solid var(--gray-300);
+}
+
+h2 {
+    border-bottom: 2px solid var(--light-grey, grey);
+    padding: 5px 0px;
+    margin: 5px 0px;
+}
+
+tr {
+    display: table-row;
+    padding: 10px;
+}
+
+.profile-info {
+    width:auto;
+    padding: 15px 5px;
+    border-top: 2px solid var(--light-grey, grey);
+    border-bottom: 2px solid var(--light-grey, grey);
+}
+
+.profile-category{
+    margin-right: 1%;
+}
+
+.profile-value {
+    margin-right: 4%;
+}
