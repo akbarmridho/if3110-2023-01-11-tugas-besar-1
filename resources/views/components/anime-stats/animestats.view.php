@@ -1,10 +1,16 @@
 <?php if (isset($user_anime)) : ?>
     <!-- todo: delete and add from list -->
     <a href='#' class='btn btn-primary btn-small'>Delete from list</a>
+    <select name="select-watch-status" id="select-watch-status" class="select-stats">
+        <option value="WISHLIST">Wishlist</option>
+        <option value="WATCHING">Watching</option>
+        <option value="WATCHED">Watched</option>
+        <!-- 'WISHLIST', 'WATCHING', 'WATCHED' -->
+    </select>
 <? else: ?>
     <a href='#' class='btn btn-primary btn-small'>Add to list</a>
 <? endif ?> 
-<select name="select-rating" id="select-rating" class="select-rating">
+<select name="select-rating" id="select-rating" class="select-stats">
     <!-- todo: disable select when anime not in list -->
     <option selected="selected" value="0">Select</option>
     <option value="10">(10) Masterpiece</option>
