@@ -2,6 +2,7 @@
 
 \Core\Router\Router::get("", [], \App\Http\Controller\AnimeController::class, 'index');
 \Core\Router\Router::get('anime/{id}', [], \App\Http\Controller\AnimeController::class, 'view');
+\Core\Router\Router::get('profile/{id}', [], \App\Http\Controller\ProfileController::class, 'view');
 
 \Core\Router\Router::get("login", [\App\Http\Middleware\Guest::class], \App\Http\Controller\AuthController::class, 'loginView');
 \Core\Router\Router::post("login", [\App\Http\Middleware\Guest::class], \App\Http\Controller\AuthController::class, 'login');

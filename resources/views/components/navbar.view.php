@@ -8,7 +8,7 @@
             <li class="navlink"><a href="/addanime">Add Anime</a></li>
         <?php endif ?>
         <?php if (\Core\Session\Session::isAuthenticated()) : ?>
-            <li class="navlink"><a href="/">Profile</a></li>
+            <li class="navlink"><a href="/profile/<?= \Core\Session\Session::$user->id ?>">Profile</a></li>
             <li class="navlink">
                 <form action="/logout" method="post">
                     <button type="submit" class="btn btn-danger">Logout</button>
