@@ -25,7 +25,7 @@ abstract class BaseType
      * @param mixed $data
      * @return bool|array
      */
-    public function isValid(mixed $data): bool|array
+    public function isValid(mixed &$data): bool|array
     {
         if ($this->shouldCast) {
             $data = $this->cast($data);
