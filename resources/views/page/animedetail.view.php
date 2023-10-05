@@ -44,7 +44,11 @@ $meta['css'][] = 'page/animedetail';
                         </div>
                     </div>
                     <div class="anime-manage">
-                        <?php if (Session::isAuthenticated()): render_component('anime-stats/animestats', ['user_anime' => UserAnime::findByUserIdAnimeId(Session::$user->id, $anime->id)])?>
+                        <?php if (Session::isAuthenticated()): render_component(
+                            'anime-stats/animestats', [
+                                'user_anime' => UserAnime::findByUserIdAnimeId(Session::$user->id, $anime->id),
+                                'review' => Review::findByUserIdAnimeId(Session::$user->id, $anime->id)
+                            ])?>
                         <?php else: ?>
                             <a href='/login' class='btn btn-primary btn-small'>Log in to rate anime</a>
                         <? endif?>
