@@ -2,6 +2,7 @@
 /** @var array $meta */
 
 use App\Model\Review;
+use App\Model\UserAnime;
 use Core\Session\Session;
 
 assert(isset($anime));
@@ -43,13 +44,10 @@ $meta['css'][] = 'page/animedetail';
                         </div>
                     </div>
                     <div class="anime-manage">
-                        <a href='#' class="btn btn-primary btn-small">Add to list</a>
-                        <select>
-                            <!--  placeholder -->
-                            <option selected>Select rating</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
+                        <?php if (Session::isAuthenticated()): render_component('anime-stats/animestats', ['user_anime' => UserAnime::findByUserIdAnimeId(Session::$user->id, $anime->id)])?>
+                        <?php else: ?>
+                            <a href='/login' class='btn btn-primary btn-small'>Log in to rate anime</a>
+                        <? endif?>
                     </div>
                     <h2 class="font-bold">Description</h2>
                     <div><p><?= $anime->description ?? 'No summary available'?></p></div>

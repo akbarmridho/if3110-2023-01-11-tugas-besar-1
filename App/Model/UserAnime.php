@@ -34,6 +34,17 @@ class UserAnime extends Model
         return array_map(fn($row) => new UserAnime($row), $result);
     }
 
+    public static function findByUserIdAnimeId(int $user_id, int $anime_id)
+    {
+        /* execute query, fetch rows */
+        $result = static::$connection->executeStatement('SELECT * FROM User_Anime WHERE user_id = :user_id AND anime_id = :anime_id', ['user_id' => $user_id, 'anime_id' => $anime_id]);
+        if (empty($result)) {
+            return null;
+        }
+
+        return new UserAnime($result[0]);
+    }
+
     public static function create(int $user_id, int $anime_id, string $status='WISHLIST'): int 
     {
         /* execute query, insert values */
