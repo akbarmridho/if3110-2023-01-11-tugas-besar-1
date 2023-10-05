@@ -41,6 +41,10 @@ $meta['css'][] = 'page/animedetail';
                             <span class="stats-value"><?= $anime->rating ? number_format($anime->rating, 2, '.', '') : 'N/A' ?></span>
                             <span class="font-bold stats-category">Members</span>
                             <span class="stats-value"><?= $anime->members ?? 'N/A'?></span>
+                            <?php if (Session::$user->role == 'ADMIN') : ?>
+                                <a class="btn btn-primary btn-small" href="/animeeditor/<?= $anime->id ?>">Edit Anime</a>
+                            <?php endif?>
+
                         </div>
                     </div>
                     <div class="anime-manage">

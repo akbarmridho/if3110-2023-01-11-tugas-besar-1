@@ -10,3 +10,6 @@
 
 \Core\Router\Router::get("addanime", [\App\Http\Middleware\Admin::class], \App\Http\Controller\AddAnimeController::class, 'addAnimeView');
 \Core\Router\Router::post("addanime", [\App\Http\Middleware\Admin::class], \App\Http\Controller\AddAnimeController::class, 'addAnime');
+
+\Core\Router\Router::get("animeeditor/{id}", [\App\Http\Middleware\Admin::class], \App\Http\Controller\EditAnimeController::class, 'editAnimeView');
+\Core\Router\Router::post("animeeditor/{id}", [\App\Http\Middleware\Admin::class], \App\Http\Controller\EditAnimeController::class, 'editAnime');
