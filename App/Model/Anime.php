@@ -69,7 +69,24 @@ class Anime extends Model
     {
         /* execute query, fetch one row */
         $result = static::$connection->executeStatement(
-            'SELECT * FROM Anime A LEFT JOIN Anime_Poster AP ON A.id = AP.anime_id LEFT JOIN Anime_Trailer AT ON A.id = AT.anime_id WHERE id = :id', 
+            'SELECT *, (
+                SELECT poster
+                FROM anime_poster
+                WHERE anime_poster.anime_id = a.id
+                LIMIT 1
+            ) as poster,
+            COALESCE(o_members, 0) as members
+            FROM anime a
+            LEFT JOIN (
+                SELECT COUNT(ua.user_id) as o_members, ua.anime_id as anime_id
+                FROM user_anime ua
+                GROUP BY ua.anime_id
+            ) m ON a.id = m.anime_id
+            LEFT JOIN (
+                SELECT AVG(r.rating) as rating, r.anime_id as anime_id
+                FROM review r
+                GROUP BY r.anime_id
+            ) re ON a.id = re.anime_id WHERE a.id = :id', 
             ['id' => $id]
         );
         if (empty($result)) {
@@ -77,49 +94,6 @@ class Anime extends Model
         }
 
         return new Anime($result[0]);
-    }
-
-    public static function create(array $data): int
-    {
-        $columns = array_keys($data);
-        $values = array_values($data);
-
-        /* execute query, insert values */
-        static::$connection->executeStatement(
-            "INSERT INTO anime (" . implode(', ', $columns) . ") VALUES (" . str_repeat('?, ', count($values) - 1) . "?)",
-            $values
-        );
-
-        return static::$connection->rowCount();
-    }
-
-    public static function remove(int $id): int
-    {
-        /* execute query, find and delete selected id */
-        $result = static::$connection->executeStatement('DELETE FROM anime WHERE id = :id;', ['id' => $id]);
-
-        return static::$connection->rowCount();
-    }
-
-    public static function update(int $id, array $data): int
-    {
-        $columns = array_keys($data);
-        $values = array_values($data);
-
-        /* update values */
-        $update_set = '';
-        foreach ($columns as $col) {
-            $update_set .= "$col = ?, ";
-        }
-        $update_set = substr($update_set, 0, -2);
-
-        /* execute query, update values */
-        static::$connection->executeStatement(
-            "UPDATE anime SET $update_set WHERE id = ?",
-            array_merge($values, array($id))
-        );
-
-        return static::$connection->rowCount();
     }
 
     public static function findAll(
@@ -214,5 +188,48 @@ class Anime extends Model
             'totalPage' => ceil($countResult[0]['count'] / $limit),
             'count' => $countResult[0]['count']
         ];
+    }
+
+    public static function create(array $data): int
+    {
+        $columns = array_keys($data);
+        $values = array_values($data);
+
+        /* execute query, insert values */
+        static::$connection->executeStatement(
+            "INSERT INTO anime (" . implode(', ', $columns) . ") VALUES (" . str_repeat('?, ', count($values) - 1) . "?)",
+            $values
+        );
+
+        return static::$connection->rowCount();
+    }
+
+    public static function remove(int $id): int
+    {
+        /* execute query, find and delete selected id */
+        $result = static::$connection->executeStatement('DELETE FROM anime WHERE id = :id;', ['id' => $id]);
+
+        return static::$connection->rowCount();
+    }
+
+    public static function update(int $id, array $data): int
+    {
+        $columns = array_keys($data);
+        $values = array_values($data);
+
+        /* update values */
+        $update_set = '';
+        foreach ($columns as $col) {
+            $update_set .= "$col = ?, ";
+        }
+        $update_set = substr($update_set, 0, -2);
+
+        /* execute query, update values */
+        static::$connection->executeStatement(
+            "UPDATE anime SET $update_set WHERE id = ?",
+            array_merge($values, array($id))
+        );
+
+        return static::$connection->rowCount();
     }
 }
