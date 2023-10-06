@@ -16,7 +16,7 @@
             </li>
         <?php else: ?>
             <li class="navlink"><a href="/login">Login</a></li>
-            <li class="navlink"><a href="/">Register</a></li>
+            <li class="navlink"><a href="/register">Register</a></li>
         <?php endif ?>
     </ul>
     <div class="burger">

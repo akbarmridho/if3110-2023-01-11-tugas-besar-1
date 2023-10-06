@@ -10,7 +10,12 @@ class Min extends BaseRule
 
     public function isValid(mixed $data): bool
     {
-        return count($data) >= $this->length;
+        if (is_string($data)) {
+            $len = strlen($data);
+        } else {
+            $len = count($data);
+        }
+        return $len >= $this->length;
     }
 
     public function getMessage(): string

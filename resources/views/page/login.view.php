@@ -8,7 +8,7 @@ $meta['css'][] = 'page/login';
 ?>
 
 <div class="login">
-    <h1>Login</h1>
+    <h1 class="font-semibold">Login</h1>
     <form action="/login" method="post">
         <label for="username">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">

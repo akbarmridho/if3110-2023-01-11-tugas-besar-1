@@ -55,7 +55,6 @@
                         Rating
                     </option>
                     <option value="air_date_start" <?= array_key_exists('sort_by', $_GET) && $_GET['sort_by'] === 'air_date_start' ? 'selected' : '' ?>>
-                        >
                         Release
                     </option>
                 </select>
