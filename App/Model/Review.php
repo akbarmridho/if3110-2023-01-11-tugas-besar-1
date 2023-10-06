@@ -10,6 +10,7 @@ use DateTime;
 /**
  * @property int id
  * @property int user_id
+ * @property string username
  * @property int anime_id
  * @property string review
  * @property int rating
@@ -23,6 +24,7 @@ class Review extends Model
         $this->attributes = array(
             'id',
             'user_id',
+            'username',
             'anime_id',
             'review',
             'rating',
@@ -35,7 +37,7 @@ class Review extends Model
     public static function findById(int $id): null|Review
     {
         /* execute query, fetch one row */
-        $result = static::$connection->executeStatement('SELECT * FROM Review WHERE id = :id', ['id' => $id]);
+        $result = static::$connection->executeStatement('SELECT * FROM Review NATURAL JOIN (SELECT id as user_id, username FROM user_data) ud WHERE id = :id', ['id' => $id]);
         if (empty($result)) {
             return null;
         }
@@ -46,7 +48,7 @@ class Review extends Model
     public static function findByUserId(int $id)
     {
         /* execute query, fetch rows */
-        $result = static::$connection->executeStatement('SELECT * FROM Review WHERE user_id = :id', ['id' => $id]);
+        $result = static::$connection->executeStatement('SELECT * FROM Review NATURAL JOIN (SELECT id as user_id, username FROM user_data) ud WHERE user_id = :id', ['id' => $id]);
         if (empty($result)) {
             return null;
         }
@@ -58,7 +60,7 @@ class Review extends Model
     public static function findByAnimeId(int $id)
     {
         /* execute query, fetch rows */
-        $result = static::$connection->executeStatement('SELECT * FROM Review WHERE anime_id = :id', ['id' => $id]);
+        $result = static::$connection->executeStatement('SELECT * FROM Review NATURAL JOIN (SELECT id as user_id, username FROM user_data) ud WHERE anime_id = :id', ['id' => $id]);
         if (empty($result)) {
             return null;
         }
@@ -70,7 +72,7 @@ class Review extends Model
     public static function findByUserIdAnimeId(int $user_id, int $anime_id)
     {
         /* execute query, fetch one row */
-        $result = static::$connection->executeStatement('SELECT * FROM Review WHERE anime_id = :anime_id AND user_id = :user_id', ['anime_id' => $anime_id, 'user_id' => $user_id]);
+        $result = static::$connection->executeStatement('SELECT * FROM Review NATURAL JOIN (SELECT id as user_id, username FROM user_data) ud WHERE anime_id = :anime_id AND user_id = :user_id', ['anime_id' => $anime_id, 'user_id' => $user_id]);
         if (empty($result)) {
             return null;
         }
