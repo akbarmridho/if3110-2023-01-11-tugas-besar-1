@@ -1,6 +1,8 @@
 <?php
 
 \Core\Router\Router::get("", [], \App\Http\Controller\AnimeController::class, 'index');
+\Core\Router\Router::get("search", [], \App\Http\Controller\AnimeController::class, 'search');
+
 \Core\Router\Router::get('anime/{id}', [], \App\Http\Controller\AnimeController::class, 'view');
 \Core\Router\Router::get('profile/{id}', [], \App\Http\Controller\ProfileController::class, 'view');
 

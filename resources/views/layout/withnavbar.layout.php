@@ -23,10 +23,10 @@
 <main>
     <?= $meta['content'] ?>
 </main>
-<script src="<?= js("index.js") ?>" defer></script>
-<script src="<?= js("components/navbar.js") ?>" defer></script>
+<script src="<?= js("index.js") ?>" type="module" defer></script>
+<script src="<?= js("components/navbar.js") ?>" type="module" defer></script>
 <?php foreach ($meta['js'] as $js) : ?>
-    <script src="<?= js($js) ?>.js" defer></script>
+    <script src="<?= js($js) ?>.js" type="module" defer></script>
 <?php endforeach ?>
 </body>
 </html>

@@ -50,6 +50,41 @@ class AnimeController extends BaseController
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $user = Session::$user;
+
+        $validated = Validator::validate($request->getQueryData(), [
+            'genre' => new StringType(false, false, [
+                new Enum(array_merge(['all'], Anime::$genres))
+            ]),
+            'status' => new StringType(false, false, [
+                new Enum(['all', 'WISHLIST', 'WATCHING', 'WATCHED'])
+            ]),
+            'sort_by' => new StringType(false, false, [
+                new Enum(['members', 'rating', 'air_date_start'])
+            ]),
+            'search_by' => new StringType(false, false, [
+                new Enum(['title', 'studio'])
+            ]),
+            'sort' => new StringType(false, false, [
+                new Enum(['asc', 'desc'])
+            ]),
+            'q' => new StringType(false, false)
+        ]);
+
+        $result = Anime::findAll(
+            is_null($user) ? null : $user->id,
+            ...$validated->data
+        );
+
+        render_component('anime-list/list', [
+            'data' => $result['data'],
+            'totalPage' => $result['totalPage'],
+            'currentPage' => 1
+        ]);
+    }
+
     public function view(Request $request)
     {
         render('animedetail', ['anime' => Anime::findById($request->getRouteParam('id')), 'review' => Review::findByAnimeId($request->getRouteParam('id'))]);
