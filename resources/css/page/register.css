@@ -53,3 +53,12 @@
     background-color: #2868c7;
     transition: background-color 0.2s;
 }
+
+.login-cta {
+    text-align: center;
+}
+
+.login-cta a {
+    color: var(--gray-200);
+    font-weight: bold;
+}

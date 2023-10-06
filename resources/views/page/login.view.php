@@ -29,6 +29,7 @@ $meta['css'][] = 'page/login';
         <?php if (isset($error)): ?>
             <p class="text-danger"><?= $error ?></p>
         <?php endif ?>
+        <p class="register-cta">Don't have an account? <a href="/register">Register here</a></p>
         <input type="submit" value="Login">
     </form>
 </div>

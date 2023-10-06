@@ -35,6 +35,7 @@ $meta['css'][] = 'page/register';
             <input type="password" name="passwordVerify" placeholder="Password" id="passwordVerify" required
                    minlength="6"/>
         </div>
+        <p class="login-cta">Have an account? <a href="/login">Login here</a></p>
         <input type="submit" value="Register">
     </form>
 </div>
