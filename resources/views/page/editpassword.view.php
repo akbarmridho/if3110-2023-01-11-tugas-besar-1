@@ -7,7 +7,7 @@ $meta['css'][] = 'page/edit-password';
 
 ?>
 
-<div class="register">
+<div class="edit-password">
     <h1 class="font-semibold">Change Password</h1>
     <form action="/profile/password" method="post">
         <input name="_method" value="PUT" hidden/>

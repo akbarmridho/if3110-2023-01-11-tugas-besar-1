@@ -1,11 +1,11 @@
 <?php
 /** @var array $meta */
+/** @var \App\Model\Anime $anime */
 
 $meta['title'] = 'Edit animetitle';
 $meta['layout'] = 'withnavbar';
 $meta['css'][] = 'page/editanime';
 
-assert(isset($anime));
 ?>
 
 <div class="animeeditor">
@@ -39,7 +39,11 @@ assert(isset($anime));
                     <label for="genre">Genre</label>
                 </td>
                 <td>
-                    <input type="text" name="genre" placeholder="Genre" id="genre" value='<?= $anime->genre ?>'>
+                    <select name="genre" id="genre" required>
+                        <?php foreach (\App\Model\Anime::$genres as $genre) : ?>
+                            <option value="<?= $genre ?>" <?= $anime->genre === $genre ? 'selected' : '' ?>><?= $genre ?></option>
+                        <?php endforeach ?>
+                    </select>
                 </td>
             </tr>
 
@@ -48,8 +52,8 @@ assert(isset($anime));
                     <label for="description">Summary</label>
                 </td>
                 <td>
-                    <input type="text" name="description" placeholder="Description" id="description"
-                           value='<?= $anime->description ?>'>
+                    <textarea name="description" id="description" placeholder="Description"
+                              rows="8"><?= $anime->description ?></textarea>
                 </td>
             </tr>
 

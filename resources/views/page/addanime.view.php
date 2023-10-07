@@ -35,7 +35,12 @@ $meta['css'][] = 'page/editanime';
                     <label for="genre">Genre</label>
                 </td>
                 <td>
-                    <input type="text" name="genre" placeholder="Genre" id="genre">
+                    <select name="genre" id="genre" required>
+                        <option selected disabled>Select Genre ...</option>
+                        <?php foreach (\App\Model\Anime::$genres as $genre) : ?>
+                            <option value="<?= $genre ?>"><?= $genre ?></option>
+                        <?php endforeach ?>
+                    </select>
                 </td>
             </tr>
 
@@ -44,7 +49,7 @@ $meta['css'][] = 'page/editanime';
                     <label for="description">Summary</label>
                 </td>
                 <td>
-                    <input type="text" name="description" placeholder="Description" id="description">
+                    <textarea name="description" id="description" placeholder="Description" rows="8"></textarea>
                 </td>
             </tr>
 
@@ -53,7 +58,8 @@ $meta['css'][] = 'page/editanime';
                     <label for="episode_count">Episode Count</label>
                 </td>
                 <td>
-                    <input type="number" name="episode_count" id="episode_count" min="1" step="1">
+                    <input type="number" name="episode_count" id="episode_count" min="1" step="1"
+                           placeholder="Episode count">
                 </td>
             </tr>
 

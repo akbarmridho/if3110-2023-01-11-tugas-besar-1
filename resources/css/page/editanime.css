@@ -2,7 +2,7 @@
     width: 600px;
     background-color: var(--light-grey);
     box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
-    margin: auto auto;
+    margin: 40px auto;
 }
 
 .animeeditor h1 {
@@ -11,7 +11,7 @@
     font-size: 24px;
     padding: 20px 0 20px 0;
     border-bottom: 1px solid #dee0e4;
-    
+    font-weight: bold;
 }
 
 .animeeditor form {
@@ -30,12 +30,23 @@
     color: #ffffff;
 }
 
-.animeeditor form input[type="datetime-local"], .animeeditor form input[type="text"], .animeeditor form input[type="number"] {
+.animeeditor form input[type="datetime-local"],
+.animeeditor form input[type="text"],
+.animeeditor form input[type="number"],
+.animeeditor form select {
     width: 310px;
     height: 50px;
     border: 1px solid #dee0e4;
     margin-bottom: 20px;
     padding: 0 15px;
+}
+
+.animeeditor form textarea {
+    width: 310px;
+    border: 1px solid #dee0e4;
+    margin-bottom: 20px;
+    padding: 15px;
+    resize: none;
 }
 
 .animeeditor form input[type="submit"] {
