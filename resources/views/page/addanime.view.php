@@ -68,7 +68,7 @@ $meta['css'][] = 'page/editanime';
                     <label for="air_date_start">Air Date Start</label>
                 </td>
                 <td>
-                    <input type="datetime-local" name="air_date_start" id="air_date_start">
+                    <input type="date" name="air_date_start" id="air_date_start">
                 </td>
             </tr>
 
@@ -77,7 +77,7 @@ $meta['css'][] = 'page/editanime';
                     <label for="air_date_end">Air Date End</label>
                 </td>
                 <td>
-                    <input type="datetime-local" name="air_date_end" id="air_date_end">
+                    <input type="date" name="air_date_end" id="air_date_end">
                 </td>
             </tr>
             </tbody>

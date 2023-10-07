@@ -30,7 +30,7 @@
     color: #ffffff;
 }
 
-.animeeditor form input[type="datetime-local"],
+.animeeditor form input[type="date"],
 .animeeditor form input[type="text"],
 .animeeditor form input[type="number"],
 .animeeditor form select {
