@@ -3,6 +3,7 @@
 namespace Core\Base;
 
 use Core\App;
+use DateTime;
 use Core\Database\Connection;
 use Core\Exception\ModelAttributeNotExist;
 
@@ -12,9 +13,26 @@ abstract class Model
 
     protected array $relationalAttributes = [];
 
+    protected array $datetimeAttributes = [];
+
     protected array $data = [];
 
     public static Connection $connection;
+
+    public function __construct(array $data)
+    {
+        $this->data = $data;
+
+        foreach ($this->datetimeAttributes as $attribute) {
+            if (array_key_exists($attribute, $this->data) && !is_null($this->data[$attribute])) {
+                $result = DateTime::createFromFormat('Y-m-d H:i:s.u', $this->data[$attribute]);
+
+                if ($result) {
+                    $this->data[$attribute] = $result;
+                }
+            }
+        }
+    }
 
     public function __get(string $key): mixed
     {

@@ -12,14 +12,10 @@ use Core\Database\Connection;
  */
 class AnimePoster extends Model
 {
-    public function __construct(array $data)
-    {
-        $this->attributes = array(
-            'anime_id',
-            'poster'
-        );
-        $this->data = $data;
-    }
+    protected array $attributes = [
+        'anime_id',
+        'poster'
+    ];
 
     public static function findById(int $id)
     {
@@ -32,7 +28,7 @@ class AnimePoster extends Model
         return array_map(fn($row) => new AnimePoster($row), $result);
     }
 
-    public static function create(int $anime_id, string $poster): int 
+    public static function create(int $anime_id, string $poster): int
     {
         /* execute query, insert values */
         static::$connection->executeStatement(
@@ -47,7 +43,7 @@ class AnimePoster extends Model
     {
         /* execute query, find and delete selected id */
         $result = static::$connection->executeStatement(
-            'DELETE FROM anime_poster WHERE anime_id = :anime_id', 
+            'DELETE FROM anime_poster WHERE anime_id = :anime_id',
             ['anime_id' => $anime_id]
         );
 
@@ -58,7 +54,7 @@ class AnimePoster extends Model
     {
         /* execute query, find and delete selected id */
         $result = static::$connection->executeStatement(
-            'DELETE FROM anime_poster WHERE anime_id = :anime_id AND poster = :poster', 
+            'DELETE FROM anime_poster WHERE anime_id = :anime_id AND poster = :poster',
             ['anime_id' => $anime_id, 'poster' => $poster]
         );
 

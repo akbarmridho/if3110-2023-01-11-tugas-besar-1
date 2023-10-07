@@ -60,10 +60,12 @@ class Anime extends Model
         'Slice of Life'
     ];
 
-    public function __construct(array $data)
-    {
-        $this->data = $data;
-    }
+    protected array $datetimeAttributes = [
+        'air_date_start',
+        'air_date_end',
+        'created_at',
+        'updated_at'
+    ];
 
     public static function findById(int $id): null|Anime
     {

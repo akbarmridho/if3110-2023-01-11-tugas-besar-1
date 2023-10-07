@@ -13,15 +13,11 @@ use Core\Database\Connection;
  */
 class UserAnime extends Model
 {
-    public function __construct(array $data)
-    {
-        $this->attributes = array(
-            'user_id',
-            'anime_id',
-            'status'
-        );
-        $this->data = $data;
-    }
+    protected array $attributes = [
+        'user_id',
+        'anime_id',
+        'status'
+    ];
 
     public static function findByUserId(int $id)
     {
@@ -45,7 +41,7 @@ class UserAnime extends Model
         return new UserAnime($result[0]);
     }
 
-    public static function create(int $user_id, int $anime_id, string $status='WISHLIST'): int 
+    public static function create(int $user_id, int $anime_id, string $status = 'WISHLIST'): int
     {
         /* execute query, insert values */
         static::$connection->executeStatement(
@@ -60,14 +56,14 @@ class UserAnime extends Model
     {
         /* execute query, find and delete selected id */
         $result = static::$connection->executeStatement(
-            'DELETE FROM user_anime WHERE user_id = :user_id AND anime_id = :anime_id', 
+            'DELETE FROM user_anime WHERE user_id = :user_id AND anime_id = :anime_id',
             ['user_id' => $user_id, 'anime_id' => $anime_id]
         );
 
         return static::$connection->rowCount();
     }
 
-    public static function updateStatus(int $user_id, int $anime_id, string $status): int 
+    public static function updateStatus(int $user_id, int $anime_id, string $status): int
     {
         /* execute query, insert values */
         static::$connection->executeStatement(

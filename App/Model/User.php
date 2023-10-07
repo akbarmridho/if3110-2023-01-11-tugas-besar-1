@@ -20,20 +20,21 @@ use PDOException;
  */
 class User extends Model
 {
-    public function __construct(array $data)
-    {
-        $this->attributes = array(
-            'id',
-            'name',
-            'username',
-            'password',
-            'bio',
-            'role',
-            'created_at',
-            'updated_at'
-        );
-        $this->data = $data;
-    }
+    protected array $attributes = [
+        'id',
+        'name',
+        'username',
+        'password',
+        'bio',
+        'role',
+        'created_at',
+        'updated_at'
+    ];
+
+    protected array $datetimeAttributes = [
+        'created_at',
+        'updated_at'
+    ];
 
     public static function findById(int $id): null|User
     {
@@ -61,7 +62,7 @@ class User extends Model
         return new User($result[0]);
     }
 
-    public static function create(array $data): int 
+    public static function create(array $data): int
     {
         $columns = array_keys($data);
         $values = array_values($data);
@@ -83,7 +84,7 @@ class User extends Model
         return static::$connection->rowCount();
     }
 
-    public static function update(int $id, array $data): int 
+    public static function update(int $id, array $data): int
     {
         $columns = array_keys($data);
         $values = array_values($data);

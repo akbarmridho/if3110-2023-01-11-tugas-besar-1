@@ -12,14 +12,10 @@ use Core\Database\Connection;
  */
 class AnimeTrailer extends Model
 {
-    public function __construct(array $data)
-    {
-        $this->attributes = array(
-            'anime_id',
-            'trailer'
-        );
-        $this->data = $data;
-    }
+    protected array $attributes = [
+        'anime_id',
+        'trailer'
+    ];
 
     public static function findById(int $id)
     {
@@ -32,7 +28,7 @@ class AnimeTrailer extends Model
         return array_map(fn($row) => new AnimeTrailer($row), $result);
     }
 
-    public static function create(int $anime_id, string $trailer): int 
+    public static function create(int $anime_id, string $trailer): int
     {
         /* execute query, insert values */
         static::$connection->executeStatement(
@@ -47,7 +43,7 @@ class AnimeTrailer extends Model
     {
         /* execute query, find and delete selected id */
         $result = static::$connection->executeStatement(
-            'DELETE FROM anime_trailer WHERE anime_id = :anime_id', 
+            'DELETE FROM anime_trailer WHERE anime_id = :anime_id',
             ['anime_id' => $anime_id]
         );
 
@@ -58,7 +54,7 @@ class AnimeTrailer extends Model
     {
         /* execute query, find and delete selected id */
         $result = static::$connection->executeStatement(
-            'DELETE FROM anime_trailer WHERE anime_id = :anime_id AND trailer = :trailer', 
+            'DELETE FROM anime_trailer WHERE anime_id = :anime_id AND trailer = :trailer',
             ['anime_id' => $anime_id, 'trailer' => $trailer]
         );
 
