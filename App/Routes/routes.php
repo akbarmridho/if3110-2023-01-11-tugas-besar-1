@@ -6,6 +6,14 @@
 // Endpoint for ajax search request
 \Core\Router\Router::get("search", [], \App\Http\Controller\AnimeController::class, 'search');
 
+// add anime
+\Core\Router\Router::get("admin/anime/add", [\App\Http\Middleware\Admin::class], \App\Http\Controller\AddAnimeController::class, 'addAnimeView');
+\Core\Router\Router::post("admin/anime", [\App\Http\Middleware\Admin::class], \App\Http\Controller\AddAnimeController::class, 'addAnime');
+
+// edit anime
+\Core\Router\Router::get("admin/anime/{id}", [\App\Http\Middleware\Admin::class], \App\Http\Controller\EditAnimeController::class, 'editAnimeView');
+\Core\Router\Router::put("admin/anime/{id}", [\App\Http\Middleware\Admin::class], \App\Http\Controller\EditAnimeController::class, 'editAnime');
+
 // Anime detail page
 \Core\Router\Router::get('anime/{id}', [], \App\Http\Controller\AnimeController::class, 'view');
 
@@ -26,9 +34,3 @@
 // Auth Register
 \Core\Router\Router::get('register', [], \App\Http\Controller\AuthController::class, 'registerView');
 \Core\Router\Router::post('register', [], \App\Http\Controller\AuthController::class, 'register');
-
-\Core\Router\Router::get("addanime", [\App\Http\Middleware\Admin::class], \App\Http\Controller\AddAnimeController::class, 'addAnimeView');
-\Core\Router\Router::post("addanime", [\App\Http\Middleware\Admin::class], \App\Http\Controller\AddAnimeController::class, 'addAnime');
-
-\Core\Router\Router::get("animeeditor/{id}", [\App\Http\Middleware\Admin::class], \App\Http\Controller\EditAnimeController::class, 'editAnimeView');
-\Core\Router\Router::post("animeeditor/{id}", [\App\Http\Middleware\Admin::class], \App\Http\Controller\EditAnimeController::class, 'editAnime');

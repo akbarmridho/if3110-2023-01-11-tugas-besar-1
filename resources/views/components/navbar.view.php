@@ -5,7 +5,7 @@
     <ul class="nav">
         <li class="navlink"><a href="/">Home</a></li>
         <?php if (\Core\Session\Session::$user !== NULL && \Core\Session\Session::$user->role === 'ADMIN'): ?>
-            <li class="navlink"><a href="/addanime">Add Anime</a></li>
+            <li class="navlink"><a href="/admin/anime/add">Add Anime</a></li>
         <?php endif ?>
         <?php if (\Core\Session\Session::isAuthenticated()) : ?>
             <li class="navlink"><a href="/profile/<?= \Core\Session\Session::$user->id ?>">Profile</a></li>

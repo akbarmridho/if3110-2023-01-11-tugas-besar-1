@@ -47,7 +47,7 @@ $meta['css'][] = 'page/animedetail';
                         <span class="stats-value"><?= $anime->members ?? 'N/A' ?></span>
                         <?php if (Session::isAuthenticated()) : ?>
                             <?php if (Session::$user->role == 'ADMIN') : ?>
-                                <a class="btn btn-primary btn-small" href="/animeeditor/<?= $anime->id ?>">Edit
+                                <a class="btn btn-primary btn-small" href="/admin/anime/<?= $anime->id ?>">Edit
                                     Anime</a>
                             <?php endif ?>
                         <?php endif ?>

@@ -10,7 +10,8 @@ assert(isset($anime));
 
 <div class="animeeditor">
     <h1>Edit Anime</h1>
-    <form action="/animeeditor/<?= $anime->id ?>" method="post">
+    <form action="/admin/anime/<?= $anime->id ?>" method="post">
+        <input type="text" value="PUT" name="_method" hidden/>
         <table>
             <tbody>
             <tr>

@@ -9,7 +9,7 @@ $meta['css'][] = 'page/editanime';
 
 <div class="animeeditor">
     <h1>Add Anime</h1>
-    <form action="/addanime" method="post">
+    <form action="/admin/anime" method="post">
         <table>
             <tbody>
             <tr>
