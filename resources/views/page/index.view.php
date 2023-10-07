@@ -6,7 +6,7 @@
  */
 
 
-$meta['title'] = 'ListWibuKu - Home';
+$meta['title'] = 'Home';
 $meta['layout'] = 'withnavbar';
 $meta['js'][] = 'page/anime-search'
 

@@ -1,7 +1,7 @@
 <?php
 /** @var array $meta */
 
-$meta['title'] = 'ListWibuKu - Register';
+$meta['title'] = 'Register';
 $meta['layout'] = 'withnavbar';
 $meta['css'][] = 'page/register';
 

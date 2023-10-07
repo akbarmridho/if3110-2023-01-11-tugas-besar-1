@@ -22,6 +22,7 @@ function render(string $name, $data = []): void
     })();
 
     $layout = $meta['layout'];
+    $meta['title'] = $meta['title'] . ' - ListWibuKu';
 
     require __DIR__ . "/../../resources/views/layout/$layout.layout.php";
 }

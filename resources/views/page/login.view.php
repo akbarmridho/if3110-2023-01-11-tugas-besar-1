@@ -1,7 +1,7 @@
 <?php
 /** @var array $meta */
 
-$meta['title'] = 'ListWibuKu - Login';
+$meta['title'] = 'Login';
 $meta['layout'] = 'withnavbar';
 $meta['css'][] = 'page/login';
 
