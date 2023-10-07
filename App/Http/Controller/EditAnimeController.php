@@ -26,7 +26,7 @@ class EditAnimeController extends BaseController
             'studio' => new StringType(required: false, nullable: true),
             'genre' => new StringType(required: false, nullable: true),
             'description' => new StringType(required: false, nullable: true),
-            'episode_count' => new IntType(required: false, nullable: true),
+            'episode_count' => new IntType(required: false, nullable: true, shouldCast: true),
             'air_date_start' => new TimestampType(required: false, nullable: true),
             'air_date_end' => new TimestampType(required: false, nullable: true)
         ]);

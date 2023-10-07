@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/Helpers/renderer.php";
+require_once __DIR__ . "/Helpers/file.php";
 
 function redirect(string $path): void
 {

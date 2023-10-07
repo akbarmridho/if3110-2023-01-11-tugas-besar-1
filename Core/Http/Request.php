@@ -34,7 +34,7 @@ class Request implements RequestInterface
 
     public function getFormData(): array
     {
-        return $_POST;
+        return array_merge($_POST, $_FILES);
     }
 
     public function getQueryData(): array

@@ -97,7 +97,7 @@ class Anime extends Model
         string $status = 'all',
         string $sort_by = 'members',
         string $search_by = 'title',
-        string $sort = 'asc',
+        string $sort = 'desc',
         string $q = '',
         int    $page = 1,
         int    $limit = 20

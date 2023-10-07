@@ -7,6 +7,8 @@
 ### Setup
 
 1. `cat ./migrations/listwibuku.sql | docker exec -i `
+2. This is chaotic, but work. If you are on linux, run `chmod -R 777 storage`
+3. `docker compose up`
 
 ## Panduan Pengerjaan
 

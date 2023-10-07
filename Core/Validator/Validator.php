@@ -4,6 +4,7 @@ namespace Core\Validator;
 
 use Core\Exception\ValidationException;
 use Core\Validator\Types\BaseType;
+use Core\Validator\Types\StringType;
 
 class Validator
 {
@@ -17,10 +18,14 @@ class Validator
                 throw new ValidationException("$rule is not an instance of BaseType");
             }
 
-            if (!array_key_exists($key, $data) && $rule->required) {
+            if ((!array_key_exists($key, $data) || $data[$key] === "") && $rule->required) {
                 $errorMessages[$key] = ["Property $key is required"];
             } else if (array_key_exists($key, $data)) {
                 $propertyData = $data[$key];
+
+                if (!($rule instanceof StringType) && !$rule->required && $propertyData === "") {
+                    continue;
+                }
 
                 if ($rule->nullable && empty($propertyData)) {
                     $validatedData[$key] = null;

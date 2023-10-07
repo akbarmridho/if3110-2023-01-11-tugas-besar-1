@@ -9,7 +9,7 @@ $meta['css'][] = 'page/editanime';
 
 <div class="animeeditor">
     <h1>Add Anime</h1>
-    <form action="/admin/anime" method="post">
+    <form action="/admin/anime" method="post" enctype="multipart/form-data">
         <table>
             <tbody>
             <tr>
@@ -78,6 +78,14 @@ $meta['css'][] = 'page/editanime';
                 </td>
                 <td>
                     <input type="date" name="air_date_end" id="air_date_end">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="poster">Poster</label>
+                </td>
+                <td>
+                    <input type="file" name="poster" id="poster" accept="image/*">
                 </td>
             </tr>
             </tbody>
