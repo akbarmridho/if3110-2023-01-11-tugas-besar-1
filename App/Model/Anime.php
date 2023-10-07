@@ -19,12 +19,11 @@ use PDOException;
  * @property ?DateTime air_date_end
  * @property DateTime created_at
  * @property DateTime updated_at
+ * @property ?string poster
+ * @property ?string trailer
  *
  * @property ?float rating
  * @property ?int members
- * @property ?string poster
- * @property ?AnimePoster[] posters
- * @property ?AnimeTrailer[] trailers
  */
 class Anime extends Model
 {
@@ -38,15 +37,14 @@ class Anime extends Model
         'air_date_start',
         'air_date_end',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'poster',
+        'trailer'
     ];
 
     protected array $relationalAttributes = [
         'rating',
-        'members',
-        'poster',
-        'posters',
-        'trailers'
+        'members'
     ];
 
     public static array $genres = [
@@ -71,12 +69,7 @@ class Anime extends Model
     {
         /* execute query, fetch one row */
         $result = static::$connection->executeStatement(
-            'SELECT *, (
-                SELECT poster
-                FROM anime_poster
-                WHERE anime_poster.anime_id = a.id
-                LIMIT 1
-            ) as poster,
+            'SELECT *,
             COALESCE(o_members, 0) as members
             FROM anime a
             LEFT JOIN (
@@ -110,12 +103,7 @@ class Anime extends Model
         int    $limit = 20
     ): array
     {
-        $sql = 'SELECT *, (
-                    SELECT poster
-                    FROM anime_poster
-                    WHERE anime_poster.anime_id = a.id
-                    LIMIT 1
-                ) as poster,
+        $sql = 'SELECT *,
                 COALESCE(o_members, 0) as members
                 FROM anime a
                 LEFT JOIN (

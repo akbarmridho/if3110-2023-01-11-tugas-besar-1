@@ -8,8 +8,8 @@ use Core\Session\Session;
 <div class="review">
     <!-- todo: review editor -->
     <div class="review-head">
-        <span class="review-user"><a href="/profile/<?= $review->user_id ?>"><?=($review->username)?></a></span>
-        <span class="review-update-time">Last updated <?= date('Y-m-d', strtotime(strval($review->updated_at))) ?></span>
+        <span class="review-user"><a href="/profile/<?= $review->user_id ?>"><?= ($review->username) ?></a></span>
+        <span class="review-update-time">Last updated <?= date_format($review->updated_at, 'Y-m-d') ?></span>
     </div>
     <div class="review-rating">
         <span class='font-semibold'>Rating:</span>
@@ -19,8 +19,8 @@ use Core\Session\Session;
         <?= $review->review ?><br>
     </div>
     <div class="review-edit">
-        <?php if(Session::isAuthenticated()) : ?>
-            <?php if($review->user_id == Session::$user->id || Session::$user->role == 'ADMIN') : ?>
+        <?php if (Session::isAuthenticated()) : ?>
+            <?php if ($review->user_id == Session::$user->id || Session::$user->role == 'ADMIN') : ?>
                 <a href='#' class='btn btn-primary btn-small'>Edit review</a>
                 <!-- todo: edit review -->
             <?php endif ?>
