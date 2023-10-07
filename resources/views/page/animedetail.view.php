@@ -1,11 +1,11 @@
 <?php
 /** @var array $meta */
 
+/** @var \App\Model\Anime $anime */
+
 use App\Model\Review;
 use App\Model\UserAnime;
 use Core\Session\Session;
-
-assert(isset($anime));
 
 $meta['title'] = $anime->title;
 $meta['layout'] = 'withnavbar';
@@ -67,7 +67,11 @@ $meta['css'][] = 'page/animedetail';
                 <h2 class="font-bold">Description</h2>
                 <div><p><?= $anime->description ?? 'No summary available' ?></p></div>
                 <h2 class="font-bold">Trailer</h2>
-                insert video
+                <?php if (!is_null($anime->trailer)) : ?>
+                    <video style="height:100%;width:100%;max-width:400px" controls id="video">
+                        <source src="<?= storage($anime->trailer) ?>" type="video/mp4" id='video_player'>
+                    </video>
+                <?php endif ?>
                 <?php if (Session::isAuthenticated() && is_null(Review::findByUserIdAnimeId(Session::$user->id, $anime->id))) : ?>
                     <h2 class="font-bold">My Review</h2>
                     todo: add review component<br>

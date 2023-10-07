@@ -39,10 +39,10 @@ VALUES (5, 'Kintama', 'Sunset', 'Comedy',
         'After a one-year hiatus, Kenpachi Kimura returns to Edo, only to stumble upon a shocking surprise: Kintoki and Yagura, his fellow Yorozuya members, have become completely different characters! Fleeing from the Yorozuya headquarters in confusion, Kenpachi finds that all the denizens of Edo have undergone impossibly extreme changes, in both appearance and personality. Most unbelievably, his sister Otae has married the Shinsengumi chief and shameless stalker Isao Kondou and is pregnant with their first child.',
         50);
 
-INSERT INTO anime(id, title, studio, genre, description, episode_count, poster)
+INSERT INTO anime(id, title, studio, genre, description, episode_count, poster, trailer)
 VALUES (6, 'Sousou no Frieren', 'Madhouse', 'Fantasy',
         'The demon king has been defeated, and the victorious hero party returns home before disbanding. The four—mage Frieren, hero Himmel, priest Heiter, and warrior Eisen—reminisce about their decade-long journey as the moment to bid each other farewell arrives. But the passing of time is different for elves, thus Frieren witnesses her companions slowly pass away one by one. Before his death, Heiter manages to foist a young human apprentice called Fern onto Frieren. Driven by the elf''s passion for collecting a myriad of magic spells, the pair embarks on a seemingly aimless journey, revisiting the places that the heroes of yore had visited. Along their travels, Frieren slowly confronts her regrets of missed opportunities to form deeper bonds with her now-deceased comrades.',
-        24, 'sample/frieren-1.jpg');
+        24, 'sample/frieren-1.jpg', 'sample/frieren-trailer.mp4');
 
 -- user_anime
 INSERT INTO user_anime(user_id, anime_id, status)
