@@ -15,7 +15,7 @@ $meta['css'][] = 'page/register';
             <input type="text" name="username" placeholder="Username" id="username" required minlength="6"
                    value="<?= isset($old) && array_key_exists('username', $old) ? $old['username'] : '' ?>"/>
             <?php if (isset($errors) && array_key_exists('username', $errors)): ?>
-                <p class="text-danger"><?= implode(', ', $errors['username']) ?></p>
+                <p class="text-danger text-small"><?= implode(', ', $errors['username']) ?></p>
             <?php endif ?>
         </div>
         <div class="form-control">
@@ -27,7 +27,7 @@ $meta['css'][] = 'page/register';
             <label for="password">Password</label>
             <input type="password" name="password" placeholder="Password" id="password" required minlength="6"/>
             <?php if (isset($errors) && array_key_exists('password', $errors)): ?>
-                <p class="text-danger"><?= implode(', ', $errors['password']) ?></p>
+                <p class="text-danger text-small"><?= implode(', ', $errors['password']) ?></p>
             <?php endif ?>
         </div>
         <div class="form-control">

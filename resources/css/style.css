@@ -119,6 +119,10 @@ video {
     color: white;
 }
 
+.text-small {
+    font-size: 0.75rem;
+}
+
 /* END FONTS */
 
 /* LAYOUTS */

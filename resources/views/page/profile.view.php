@@ -14,7 +14,7 @@ $meta['css'][] = 'page/profile';
         <div><h1><?= $user->username ?>'s Profile</h1></div>
         <?php if ($user->id === \Core\Session\Session::$user?->id) : ?>
             <div class="account-action">
-                <a href="" class="link">
+                <a href="/profile/edit" class="link">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                         <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -24,7 +24,7 @@ $meta['css'][] = 'page/profile';
                     </span>
                     Edit Profile
                 </a>
-                <a href="" class="link">
+                <a href="/profile/password" class="link">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path
                                     fill="#b2c8f0"
@@ -47,7 +47,7 @@ $meta['css'][] = 'page/profile';
                     <?php if (is_null($user->bio) || $user->bio === ""): ?>
                         No biography yet.
                         <?php if ($user->id === \Core\Session\Session::$user?->id) : ?>
-                            <a href="" class="link">Write it now</a>
+                            <a href="/profile/edit" class="link">Write it now</a>
                         <?php endif ?>
                     <?php else: ?>
                         <?= $user->bio ?>

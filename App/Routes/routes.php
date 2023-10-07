@@ -9,6 +9,12 @@
 // Anime detail page
 \Core\Router\Router::get('anime/{id}', [], \App\Http\Controller\AnimeController::class, 'view');
 
+// Update profile
+\Core\Router\Router::get('profile/edit', [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ProfileController::class, 'updateView');
+\Core\Router\Router::put('profile/edit', [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ProfileController::class, 'update');
+\Core\Router\Router::get('profile/password', [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ProfileController::class, 'passwordView');
+\Core\Router\Router::put('profile/password', [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ProfileController::class, 'password');
+
 // Profile detail page
 \Core\Router\Router::get('profile/{id}', [], \App\Http\Controller\ProfileController::class, 'view');
 
