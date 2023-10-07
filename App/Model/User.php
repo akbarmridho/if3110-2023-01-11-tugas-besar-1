@@ -76,6 +76,32 @@ class User extends Model
         return static::$connection->rowCount();
     }
 
+    public static function getStatistics(int $id): array
+    {
+        $result = [
+            'wishlist' => 0,
+            'watched' => 0,
+            'watching' => 0
+        ];
+
+        $userWatch = static::$connection->executeStatement(
+            'SELECT COUNT(*) as count, status
+                FROM user_anime
+                WHERE user_id = :id
+                GROUP BY status', [
+            'id' => $id
+        ]);
+
+        foreach ($userWatch as $status) {
+            $result[strtolower($status['status'])] = $status['count'];
+        }
+
+        $avgRating = static::$connection->executeStatement('SELECT AVG(rating) as avg FROM review WHERE user_id = :id', ['id' => $id]);
+        $result['mean_score'] = $avgRating[0]['avg'];
+
+        return $result;
+    }
+
     public static function remove(int $id): int
     {
         /* execute query, find and delete selected id */

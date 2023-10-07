@@ -1,32 +1,94 @@
 h1 {
-    background-color: var(--light-grey, grey);
-    padding: 10px 10px;
-    margin-top: 2px;
-    border-bottom: 2px solid var(--gray-300);
+    color: var(--gray-200);
+    font-weight: bold;
 }
 
-h2 {
-    border-bottom: 2px solid var(--light-grey, grey);
-    padding: 5px 0px;
-    margin: 5px 0px;
+.profile {
+    margin: 0 0.5rem;
+    border: 2px solid var(--light-grey);
 }
 
-tr {
-    display: table-row;
-    padding: 10px;
+.profile-head {
+    padding: 0.5rem 0.75rem;
+    background-color: var(--light-grey);
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-body {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .profile-info {
-    width:auto;
-    padding: 15px 5px;
-    border-top: 2px solid var(--light-grey, grey);
-    border-bottom: 2px solid var(--light-grey, grey);
+    padding: 0.5rem;
+    border-right: 2px solid var(--light-grey);
 }
 
-.profile-category{
-    margin-right: 1%;
+@media all and (min-width: 480px) {
+    .profile-body {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
-.profile-value {
-    margin-right: 4%;
+@media all and (min-width: 600px) {
+    .profile-body {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .profile-detail {
+        grid-column: span 2;
+    }
+}
+
+@media all and (min-width: 920px) {
+    .profile-body {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .profile-detail {
+        grid-column: span 3;
+    }
+}
+
+.profile-image {
+    width: 100%;
+}
+
+.profile-name {
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.profile-detail {
+    padding: 0.5rem;
+}
+
+.link {
+    color: var(--blue-link);
+    text-decoration: none;
+    display: flex;
+}
+
+.link span {
+    padding-right: 0.25rem;
+}
+
+.link:hover {
+    color: var(--blue-link);
+    text-decoration: underline;
+}
+
+.profile-stats {
+    border-top: 1px solid var(--light-grey);
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.anime-stats {
+    margin-top: 0.5rem;
+    display: grid;
+    max-width: 400px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }

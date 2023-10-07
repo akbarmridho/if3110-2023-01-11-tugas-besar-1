@@ -18,7 +18,7 @@ class ProfileController extends BaseController
             'id' => new IntType(true),
             'name' => new StringType(true),
             'username' => new StringType(true),
-            'bio' => new StringType(nullable:true),
+            'bio' => new StringType(nullable: true),
             'role' => new StringType(true, false, [new Enum(['USER', 'ADMIN'])])
         ]);
 
@@ -33,6 +33,9 @@ class ProfileController extends BaseController
 
     public function view(Request $request)
     {
-        render('profile', ['user' => User::findById($request->getRouteParam('id'))]);
+        render('profile', [
+            'user' => User::findById($request->getRouteParam('id')),
+            'stats' => User::getStatistics($request->getRouteParam('id'))
+        ]);
     }
 }
