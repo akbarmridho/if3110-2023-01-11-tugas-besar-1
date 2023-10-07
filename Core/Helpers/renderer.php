@@ -2,12 +2,14 @@
 
 function render(string $name, $data = []): void
 {
+
     $meta = [
         'layout' => 'base',
         'title' => 'No Title',
         'css' => [],
         'js' => [],
-        'content' => ''
+        'content' => '',
+        'toast' => \Core\Session\Session::getCleanMessage()
     ];
 
     (function () use (&$meta, $data, $name) {

@@ -23,6 +23,13 @@
 <main>
     <?= $meta['content'] ?>
 </main>
+<?php if (!is_null($meta['toast'])) : ?>
+    <div class="toast visible" id="toast">
+        <div class="toast-body">
+            <?= $meta['toast'] ?>
+        </div>
+    </div>
+<?php endif ?>
 <script src="<?= js("index.js") ?>" type="module" defer></script>
 <script src="<?= js("components/navbar.js") ?>" type="module" defer></script>
 <?php foreach ($meta['js'] as $js) : ?>

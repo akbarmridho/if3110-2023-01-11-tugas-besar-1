@@ -26,5 +26,23 @@ class Session
         if (!session_destroy()) {
             throw new HttpException('Cannot destroy session');
         }
+
+        session_start();
+    }
+
+    public static function setMessage(string $message)
+    {
+        $_SESSION['message'] = $message;
+    }
+
+    public static function getCleanMessage(): ?string
+    {
+        if (array_key_exists('message', $_SESSION)) {
+            $message = $_SESSION['message'];
+            unset($_SESSION['message']);
+            return $message;
+        }
+
+        return null;
     }
 }

@@ -67,6 +67,7 @@ class AuthController extends BaseController
             $user = User::findByUsername($validated->data['username']);
 
             Session::login($user);
+            Session::setMessage('Registered Successfully');
             redirect('');
         }
     }
@@ -95,6 +96,7 @@ class AuthController extends BaseController
                 render('login', ['error' => 'Username or password is incorrect']);
             } else {
                 Session::login($user);
+                Session::setMessage('Logged in successfully');
                 redirect('');
             }
         }
@@ -103,6 +105,7 @@ class AuthController extends BaseController
     public function logout(Request $request)
     {
         Session::logout();
+        Session::setMessage('Logged out successfully');
         redirect('/');
     }
 }

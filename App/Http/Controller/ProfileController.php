@@ -40,6 +40,7 @@ class ProfileController extends BaseController
         }
 
         User::update(Session::$user->id, $validated->data);
+        Session::setMessage('Profile updated');
         redirect('profile/' . Session::$user->id);
     }
 
@@ -77,6 +78,7 @@ class ProfileController extends BaseController
                 'password' => $password,
             ]);
 
+            Session::setMessage('Password changed');
             redirect('profile/' . Session::$user->id);
         }
     }
