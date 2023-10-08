@@ -96,7 +96,8 @@ $meta['js'][] = 'page/anime-detail';
                 <?php endif ?>
                 <?php if (Session::isAuthenticated() && is_null($user_review)) : ?>
                     <h2 class="font-bold">My Review</h2>
-                    todo: add review component<br>
+                    <a href='/review/add/<?= $anime->id?>' class='btn btn-primary btn-small'>Add review</a>
+                    <!-- todo: change review layout -->
                 <?php endif ?>
                 <h2 class="font-bold">Reviews</h2>
                 <?php

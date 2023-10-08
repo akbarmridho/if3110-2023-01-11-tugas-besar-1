@@ -18,6 +18,10 @@
 // Anime detail page
 \Core\Router\Router::get('anime/{id}', [], \App\Http\Controller\AnimeController::class, 'view');
 
+// add review
+\Core\Router\Router::get("review/add/{id}", [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ReviewController::class, 'addReviewView');
+\Core\Router\Router::post("review/add/{id}", [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ReviewController::class, 'addReview');
+
 // Update profile
 \Core\Router\Router::get('profile/edit', [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ProfileController::class, 'updateView');
 \Core\Router\Router::put('profile/edit', [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ProfileController::class, 'update');
