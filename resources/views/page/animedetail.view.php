@@ -71,6 +71,8 @@ $meta['css'][] = 'page/animedetail';
                     <video style="height:100%;width:100%;max-width:400px" controls id="video">
                         <source src="<?= storage($anime->trailer) ?>" type="video/mp4" id='video_player'>
                     </video>
+                <?php else: ?>
+                    No trailer found
                 <?php endif ?>
                 <?php if (Session::isAuthenticated() && is_null(Review::findByUserIdAnimeId(Session::$user->id, $anime->id))) : ?>
                     <h2 class="font-bold">My Review</h2>

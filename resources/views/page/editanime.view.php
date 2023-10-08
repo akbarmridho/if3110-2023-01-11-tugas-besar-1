@@ -86,6 +86,8 @@ $meta['css'][] = 'page/editanime';
                            value='<?= !is_null($anime->air_date_end) ? date_format($anime->air_date_end, 'Y-m-d') : '' ?>'>
                 </td>
             </tr>
+            <!-- todo: edit poster, trailer; delete poster/trailer from storage on update -->
+            <!-- todo: preview of poster, trailer -->
             </tbody>
         </table>
 
