@@ -81,7 +81,7 @@ $meta['js'][] = 'page/anime-detail';
                         'anime' => $anime
                     ]) ?>
                     <?php else: ?>
-                        <a href='/login' class='btn btn-primary btn-small'>Log in to rate anime</a>
+                        <a href='/login' class='btn btn-primary btn-small'>Login to add</a>
                     <?php endif ?>
                 </div>
                 <h2 class="font-bold">Description</h2>

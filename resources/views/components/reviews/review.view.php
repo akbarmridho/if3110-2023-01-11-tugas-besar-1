@@ -8,11 +8,11 @@ use Core\Session\Session;
 <div class="review">
     <!-- todo: review editor -->
     <div class="review-head">
-        <span class="review-user"><a href="/profile/<?= $review->user_id ?>"><?= ($review->username) ?></a></span>
-        <span class="review-update-time">Last updated <?= date_format($review->updated_at, 'Y-m-d') ?></span>
+        <div class="review-user"><a href="/profile/<?= $review->user_id ?>"><?= ($review->username) ?></a></div>
+        <div class="review-update-time">Last updated <?= date_format($review->updated_at, 'Y-m-d') ?></div>
     </div>
     <div class="review-rating">
-        <span class='font-semibold'>Rating:</span>
+        <span class=''>Rating:</span>
         <span><?= $review->rating ?><br></span>
     </div>
     <div class="review-content">
