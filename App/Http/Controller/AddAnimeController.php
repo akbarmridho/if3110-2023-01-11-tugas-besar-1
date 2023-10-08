@@ -7,6 +7,7 @@ use Core\Http\Request;
 use Core\Base\BaseController;
 use Core\Session\Session;
 use Core\Validator\Rules\ImageRule;
+use Core\Validator\Rules\VideoRule;
 use Core\Validator\Types\IntType;
 use Core\Validator\Types\StringType;
 use Core\Validator\Types\TimestampType;
@@ -30,7 +31,8 @@ class AddAnimeController extends BaseController
             'episode_count' => new IntType(required: false, nullable: true, shouldCast: true),
             'air_date_start' => new TimestampType(required: false, nullable: true),
             'air_date_end' => new TimestampType(required: false, nullable: true),
-            'poster' => new UploadedFileType(required: false, rules: [new ImageRule()])
+            'poster' => new UploadedFileType(required: false, rules: [new ImageRule()]),
+            'trailer' => new UploadedFileType(required: false, rules: [new VideoRule()])
         ]);
 
         if ($validated->isError()) {
@@ -47,6 +49,18 @@ class AddAnimeController extends BaseController
                 } else {
                     // need to check name is not empty because if empty then no image exist
                     unset($validated->data['poster']);
+                }
+            }
+
+            if (array_key_exists('trailer', $validated->data)) {
+
+                if ($validated->data['trailer']['name'] !== '') {
+                    // handle video upload
+                    $trailer = $validated->data['trailer'];
+                    $validated->data['trailer'] = move_uploaded_to_storage($trailer['tmp_name'], $trailer['name']);
+                } else {
+                    // need to check name is not empty because if empty then no image exist
+                    unset($validated->data['trailer']);
                 }
             }
 

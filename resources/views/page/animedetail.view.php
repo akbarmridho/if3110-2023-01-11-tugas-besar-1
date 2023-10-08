@@ -49,6 +49,7 @@ $meta['css'][] = 'page/animedetail';
                             <?php if (Session::$user->role == 'ADMIN') : ?>
                                 <a class="btn btn-primary btn-small" href="/admin/anime/<?= $anime->id ?>">Edit
                                     Anime</a>
+                                <!-- todo: delete anime -->
                             <?php endif ?>
                         <?php endif ?>
 

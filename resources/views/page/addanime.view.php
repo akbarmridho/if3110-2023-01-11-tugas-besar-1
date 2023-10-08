@@ -88,6 +88,14 @@ $meta['css'][] = 'page/editanime';
                     <input type="file" name="poster" id="poster" accept="image/*">
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="trailer">Trailer</label>
+                </td>
+                <td>
+                    <input type="file" name="trailer" id="trailer" accept="video/*">
+                </td>
+            </tr>
             <!-- todo: insert poster, trailer -->
             <!-- todo: previews for poster, trailer -->
             </tbody>

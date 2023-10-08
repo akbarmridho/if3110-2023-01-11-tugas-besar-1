@@ -10,6 +10,7 @@
     </select>
 <? else: ?>
     <a href='#' class='btn btn-primary btn-small'>Add to list</a>
+    <!-- todo: route -->
 <? endif ?> 
 
 <select name="select-rating" id="select-rating" class="select-stats" <?= isset($user_anime) ? '' : 'disabled'?>>
