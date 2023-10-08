@@ -100,7 +100,7 @@ class Anime extends Model
         string $sort = 'desc',
         string $q = '',
         int    $page = 1,
-        int    $limit = 20
+        int    $limit = 9
     ): array
     {
         $sql = 'SELECT *,

@@ -130,5 +130,12 @@ class User extends Model
 
         return static::$connection->rowCount();
     }
+
+    public static function count(): int
+    {
+        $result = static::$connection->executeStatement("SELECT COUNT(*) as count FROM user_data");
+
+        return $result[0]['count'];
+    }
 }
 

@@ -58,10 +58,13 @@ class AuthController extends BaseController
 
             $password = password_hash($validated->data['password'], PASSWORD_BCRYPT);
 
+            $count = User::count();
+
             User::create([
                 'username' => $validated->data['username'],
                 'password' => $password,
-                'name' => $validated->data['name']
+                'name' => $validated->data['name'],
+                'role' => $count === 0 ? 'ADMIN' : 'USER',
             ]);
 
             $user = User::findByUsername($validated->data['username']);
