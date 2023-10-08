@@ -73,7 +73,7 @@ $meta['css'][] = 'page/editanime';
                 </td>
                 <td>
                     <input type="date" name="air_date_start" id="air_date_start"
-                           value='<?= $anime->air_date_start ?>'>
+                           value='<?= !is_null($anime->air_date_start) ? date_format($anime->air_date_start, 'Y-m-d') : "" ?>'>
                 </td>
             </tr>
 
@@ -83,7 +83,7 @@ $meta['css'][] = 'page/editanime';
                 </td>
                 <td>
                     <input type="date" name="air_date_end" id="air_date_end"
-                           value='<?= $anime->air_date_end ?>'>
+                           value='<?= !is_null($anime->air_date_end) ? date_format($anime->air_date_end, 'Y-m-d') : '' ?>'>
                 </td>
             </tr>
             </tbody>

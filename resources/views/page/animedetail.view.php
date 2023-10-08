@@ -34,9 +34,9 @@ $meta['css'][] = 'page/animedetail';
                 <div class="anime-info"><span
                             class="font-semibold">Episode Count:</span> <?= $anime->episode_count ?? '?' ?></div>
                 <div class="anime-info"><span
-                            class="font-semibold">Air Date Start:</span> <?= $anime->air_date_start ?? '?' ?></div>
+                            class="font-semibold">Air Date Start:</span> <?= !is_null($anime->air_date_start) ? date_format($anime->air_date_start, 'Y-m-d') : '?' ?></div>
                 <div class="anime-info"><span
-                            class="font-semibold">Air Date End:</span> <?= $anime->air_date_end ?? '?' ?></div>
+                            class="font-semibold">Air Date End:</span> <?= !is_null($anime->air_date_end) ? date_format($anime->air_date_end, 'Y-m-d') : '?' ?></div>
             </td>
             <td class="right-content">
                 <div class="anime-stats">

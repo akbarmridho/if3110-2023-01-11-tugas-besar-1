@@ -8,7 +8,7 @@
     </div>
     <div class="card-anime-sub">
         <div class="card-anime-release">
-            <p><?= $anime->air_date_start ?? 'No date available' ?></p>
+            <p><?= !is_null($anime->air_date_start) ? date_format($anime->air_date_start, 'Y-m-d') : 'No date available' ?></p>
         </div>
         <div class="card-anime-episode">
             <p><?= $anime->episode_count ?? '??' ?> eps</p>
