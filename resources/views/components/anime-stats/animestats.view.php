@@ -1,22 +1,63 @@
-<?php if (isset($user_anime)) : ?>
-    <!-- todo: delete and add from list -->
-    <a href='#' class='btn btn-primary btn-small'>Delete from list</a>
-    
-    <select name="select-watch-status" id="select-watch-status" class="select-stats">
-        <?php foreach(array('WISHLIST', 'WATCHING', 'WATCHED') as $watchStatus) : ?>
-            <!-- todo: update on selection update -->
-            <option class='watch-status-option' value='<?= $watchStatus?>' <?= $user_anime->status == $watchStatus ? 'selected' : '' ?>><?= ucfirst(strtolower($watchStatus))?></option>
-        <?php endforeach ?>
-    </select>
-<? else: ?>
-    <a href='#' class='btn btn-primary btn-small'>Add to list</a>
-    <!-- todo: route -->
-<? endif ?> 
+<?php
+/** @var ?\App\Model\UserAnime $user_anime */
+/** @var \App\Model\Anime $anime */
+?>
+<div class="status-container">
+    <p id="status-text"><?= is_null($user_anime) ? 'Not yet added' : ucfirst(strtolower($user_anime->status)) ?></p>
+    <button class="btn btn-primary btn-small" id="update-status-modal-button"
+            data-modal="status-update"><?= is_null($user_anime) ? 'Add to list' : 'Update list' ?></button>
+    <button id="status-delete-button" class="btn btn-danger btn-small <?= is_null($user_anime) ? 'hidden' : '' ?>"
+            data-modal="status-delete">Delete
+        from list
+    </button>
+</div>
 
-<select name="select-rating" id="select-rating" class="select-stats" <?= isset($user_anime) ? '' : 'disabled'?>>
-    <!-- todo: update on selection update -->
-    <option class='rating-option' value="0">Select Rating</option>
-    <?php for ($i=1; $i <= 10; $i++) : ?>
-        <option class='rating-option' value='<?= $i?>' <?= isset($review) ? ($review->rating == $i ? 'selected' : '') : ''?> ><?= $i?> / 10</option>
-    <?php endfor ?>
-</select>
+<div class="modal" id="status-update">
+    <div class="modal-bg modal-exit"></div>
+    <div class="modal-container">
+        <h1 class="modal-title">Update Status</h1>
+        <div class="modal-body">
+            <label for="watch-status">Status</label>
+            <select name="status" id="watch-status">
+                <?php foreach (array('WISHLIST', 'WATCHING', 'WATCHED') as $watchStatus) : ?>
+                    <option class=''
+                            value='<?= $watchStatus ?>' <?= $user_anime && $user_anime->status === $watchStatus ? 'selected' : '' ?>><?= ucfirst(strtolower($watchStatus)) ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+        <div class="modal-action">
+            <button class="btn modal-exit">Cancel</button>
+            <button class="btn btn-primary" id="anime-update-status"
+                    data-id="<?= $anime->id ?>">Update
+            </button>
+        </div>
+        <button class="modal-close modal-exit">X</button>
+    </div>
+</div>
+
+<div class="modal" id="status-delete">
+    <div class="modal-bg modal-exit"></div>
+    <div class="modal-container">
+        <h1 class="modal-title">Are you sure?</h1>
+        <div class="modal-body"><p>Are you sure want to remove this anime from your list?</p></div>
+        <div class="modal-action">
+            <button class="btn modal-exit">Cancel</button>
+            <button class="btn btn-danger" id="status-delete-form"
+                    data-id="<?= $anime->id ?>">Delete
+            </button>
+        </div>
+        <button class="modal-close modal-exit">X</button>
+    </div>
+</div>
+
+<div class="toast" id="toast-update">
+    <div class="toast-body">
+        Watch status updated
+    </div>
+</div>
+
+<div class="toast" id="toast-delete">
+    <div class="toast-body">
+        Watch status deleted
+    </div>
+</div>

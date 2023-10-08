@@ -35,3 +35,7 @@
 // Auth Register
 \Core\Router\Router::get('register', [], \App\Http\Controller\AuthController::class, 'registerView');
 \Core\Router\Router::post('register', [], \App\Http\Controller\AuthController::class, 'register');
+
+// Anime Status
+\Core\Router\Router::post("anime/{id}/status", [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\StatusController::class, 'updateStatus');
+\Core\Router\Router::delete("anime/{id}/status", [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\StatusController::class, "deleteStatus");

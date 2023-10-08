@@ -3,8 +3,13 @@
 
 /** @var \App\Model\Anime $anime */
 
+/** @var ?\App\Model\UserAnime $user_anime */
+
+/** @var ?\App\Model\Review[] $reviews */
+
+/** @var ?\App\Model\Review $user_review */
+
 use App\Model\Review;
-use App\Model\UserAnime;
 use Core\Session\Session;
 
 $meta['title'] = $anime->title;
@@ -18,7 +23,7 @@ $meta['js'][] = 'page/anime-detail';
     <table>
         <thead>
         <tr class="content-header">
-            <h1 class="font-bold">
+            <h1 class="h1 font-bold">
                 <?= $anime->title ?>
             </h1>
         </tr>
@@ -48,35 +53,32 @@ $meta['js'][] = 'page/anime-detail';
                         <span class="stats-value"><?= $anime->rating ? number_format($anime->rating, 2, '.', '') : 'N/A' ?></span>
                         <span class="font-bold stats-category">Members</span>
                         <span class="stats-value"><?= $anime->members ?? 'N/A' ?></span>
-                        <?php if (Session::isAuthenticated()) : ?>
-                            <?php if (Session::$user->role == 'ADMIN') : ?>
-                                <a class="btn btn-primary btn-small" href="/admin/anime/<?= $anime->id ?>">Edit
-                                    Anime</a>
-                                <button class="btn btn-danger btn-small" data-modal="anime-delete">Delete Anime</button>
-                                <div class="modal" id="anime-delete">
-                                    <div class="modal-bg modal-exit"></div>
-                                    <div class="modal-container">
-                                        <h1 class="modal-title">Are you sure?</h1>
-                                        <div class="modal-body"><p>Are you sure want to delete this anime?</p></div>
-                                        <div class="modal-action">
-                                            <button class="btn modal-exit">Cancel</button>
-                                            <button class="btn btn-danger" id="anime-delete-form"
-                                                    data-id="<?= $anime->id ?>">Delete
-                                            </button>
-                                        </div>
-                                        <button class="modal-close modal-exit">X</button>
+                        <?php if (Session::isAuthenticated() && Session::$user->role == 'ADMIN') : ?>
+                            <a class="btn btn-primary btn-small" href="/admin/anime/<?= $anime->id ?>">Edit
+                                Anime</a>
+                            <button class="btn btn-danger btn-small" data-modal="anime-delete">Delete Anime</button>
+                            <div class="modal" id="anime-delete">
+                                <div class="modal-bg modal-exit"></div>
+                                <div class="modal-container">
+                                    <h1 class="modal-title">Are you sure?</h1>
+                                    <div class="modal-body"><p>Are you sure want to delete this anime?</p></div>
+                                    <div class="modal-action">
+                                        <button class="btn modal-exit">Cancel</button>
+                                        <button class="btn btn-danger" id="anime-delete-form"
+                                                data-id="<?= $anime->id ?>">Delete
+                                        </button>
                                     </div>
+                                    <button class="modal-close modal-exit">X</button>
                                 </div>
-                            <?php endif ?>
+                            </div>
                         <?php endif ?>
-
                     </div>
                 </div>
                 <div class="anime-manage">
                     <?php if (Session::isAuthenticated()): render_component(
                         'anime-stats/animestats', [
-                        'user_anime' => UserAnime::findByUserIdAnimeId(Session::$user->id, $anime->id),
-                        'review' => Review::findByUserIdAnimeId(Session::$user->id, $anime->id)
+                        'user_anime' => $user_anime,
+                        'anime' => $anime
                     ]) ?>
                     <?php else: ?>
                         <a href='/login' class='btn btn-primary btn-small'>Log in to rate anime</a>
@@ -92,13 +94,12 @@ $meta['js'][] = 'page/anime-detail';
                 <?php else: ?>
                     No trailer found
                 <?php endif ?>
-                <?php if (Session::isAuthenticated() && is_null(Review::findByUserIdAnimeId(Session::$user->id, $anime->id))) : ?>
+                <?php if (Session::isAuthenticated() && is_null($user_review)) : ?>
                     <h2 class="font-bold">My Review</h2>
                     todo: add review component<br>
                 <?php endif ?>
                 <h2 class="font-bold">Reviews</h2>
                 <?php
-                $reviews = Review::findByAnimeId($anime->id);
                 if (is_null($reviews)) {
                     echo "No reviews found";
                 } else {

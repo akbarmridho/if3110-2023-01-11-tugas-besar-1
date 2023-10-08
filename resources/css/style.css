@@ -142,6 +142,10 @@ html {
     background-color: var(--dark-grey);
 }
 
+.hidden {
+    display: none;
+}
+
 /* END LAYOUTS */
 
 /* ANIME FILTERS */

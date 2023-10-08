@@ -6,7 +6,7 @@
     width: 80%;
 }
 
-.content-header h1 {
+.h1 {
     background-color: var(--light-grey, grey);
     padding: 10px 10px;
     margin-top: 2px;
@@ -64,4 +64,17 @@ select {
     height: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.status-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+#status-text {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 0.25rem;
+    background-color: var(--light-grey);
 }
