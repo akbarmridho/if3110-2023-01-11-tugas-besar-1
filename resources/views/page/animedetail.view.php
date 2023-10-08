@@ -52,8 +52,6 @@ $meta['js'][] = 'page/anime-detail';
                             <?php if (Session::$user->role == 'ADMIN') : ?>
                                 <a class="btn btn-primary btn-small" href="/admin/anime/<?= $anime->id ?>">Edit
                                     Anime</a>
-                                <a class="btn btn-danger btn-small" href="#">Delete
-                                    Anime</a>
                                 <button class="btn btn-danger btn-small" data-modal="anime-delete">Delete Anime</button>
                                 <div class="modal" id="anime-delete">
                                     <div class="modal-bg modal-exit"></div>
