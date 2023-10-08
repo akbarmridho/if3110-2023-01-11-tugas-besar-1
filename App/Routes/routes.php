@@ -26,6 +26,9 @@
 \Core\Router\Router::get("review/edit/{id}", [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ReviewController::class, 'editReviewView');
 \Core\Router\Router::put("review/edit/{id}", [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ReviewController::class, 'editReview');
 
+// delete review
+\Core\Router\Router::delete("review/delete/{id}", [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ReviewController::class, 'deleteReview');
+
 // Update profile
 \Core\Router\Router::get('profile/edit', [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ProfileController::class, 'updateView');
 \Core\Router\Router::put('profile/edit', [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ProfileController::class, 'update');

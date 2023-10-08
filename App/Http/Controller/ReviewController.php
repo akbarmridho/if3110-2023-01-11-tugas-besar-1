@@ -74,6 +74,11 @@ class ReviewController extends BaseController
 
     public function deleteReview(Request $request)
     {
-        // todo:
+        $id = (int)$request->getRouteParam('id');
+        Review::remove($id);
+
+        Session::setMessage('Review deleted successfully');
+
+        // todo: delete modal confirmation
     }
 }
