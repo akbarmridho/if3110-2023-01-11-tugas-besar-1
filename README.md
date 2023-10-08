@@ -19,6 +19,7 @@ ListWibuKu is a site where you could explore anime and find anime review online
 3. If you are on Linux, make sure storage folder could be modified by another user. This is chaotic, but you could just
    run `chmod -R 777 storage`
 4. Run migration `PGPASSWORD=pgpassword psql -h localhost -U postgres -d postgres -f migrations/listwibuku.sql`
+5. (Optional) run seeder `PGPASSWORD=pgpassword psql -h localhost -U postgres -d postgres -f migrations/seed.sql`
 
 ## How to Run
 
