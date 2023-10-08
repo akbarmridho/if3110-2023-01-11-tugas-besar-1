@@ -22,6 +22,10 @@
 \Core\Router\Router::get("review/add/{id}", [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ReviewController::class, 'addReviewView');
 \Core\Router\Router::post("review/add/{id}", [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ReviewController::class, 'addReview');
 
+// edit review
+\Core\Router\Router::get("review/edit/{id}", [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ReviewController::class, 'editReviewView');
+\Core\Router\Router::put("review/edit/{id}", [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ReviewController::class, 'editReview');
+
 // Update profile
 \Core\Router\Router::get('profile/edit', [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ProfileController::class, 'updateView');
 \Core\Router\Router::put('profile/edit', [\App\Http\Middleware\Authenticated::class], \App\Http\Controller\ProfileController::class, 'update');

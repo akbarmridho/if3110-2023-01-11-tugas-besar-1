@@ -21,8 +21,7 @@ use Core\Session\Session;
     <div class="review-edit">
         <?php if (Session::isAuthenticated()) : ?>
             <?php if ($review->user_id == Session::$user->id || Session::$user->role == 'ADMIN') : ?>
-                <a href='#' class='btn btn-primary btn-small'>Edit review</a>
-                <!-- todo: edit review -->
+                <a href='/review/edit/<?= $review->id?>' class='btn btn-primary btn-small'>Edit review</a>
             <?php endif ?>
         <?php endif ?>
     </div>

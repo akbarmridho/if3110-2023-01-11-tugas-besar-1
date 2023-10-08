@@ -43,12 +43,33 @@ class ReviewController extends BaseController
 
     public function editReviewView(Request $request)
     {
-        // todo:   
+        render('editreview', ['review' => Review::findById($request->getRouteParam('id'))]);
     }
 
     public function editReview(Request $request)
     {
-        // todo:
+        $validated = Validator::validate($request->getFormData(), [
+            'review' => new StringType(required: true),
+            'rating' => new IntType(required: true, shouldCast: true),
+        ]);
+
+        $oldReview = Review::findById($request->getRouteParam('id'));
+
+        if ($validated->isError()) {
+            render('editreview', ['review' => $oldReview]);
+        } else {
+            $updateReviewData = $validated->data;
+            $updateReviewData['anime_id'] = $oldReview->anime_id;
+            $updateReviewData['user_id'] = $oldReview->user_id;
+
+            $rowCount = Review::update($request->getRouteParam('id'), $updateReviewData);
+            if ($rowCount == 0) {
+                render('addreview', ['error' => 'Failed to edit review']);
+            } else {
+                Session::setMessage('Review added successfully');
+                redirect('anime/' . $oldReview->anime_id);
+            }
+        }
     }
 
     public function deleteReview(Request $request)
