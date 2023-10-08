@@ -82,4 +82,11 @@ class ProfileController extends BaseController
             redirect('profile/' . Session::$user->id);
         }
     }
+
+    public function delete(Request $request)
+    {
+        Session::logout();
+        User::remove(Session::$user->id);
+        Session::setMessage('Account deleted successfully');
+    }
 }
