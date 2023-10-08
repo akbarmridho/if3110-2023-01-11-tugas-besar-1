@@ -10,6 +10,7 @@ use Core\Session\Session;
 $meta['title'] = $anime->title;
 $meta['layout'] = 'withnavbar';
 $meta['css'][] = 'page/animedetail';
+$meta['js'][] = 'page/anime-detail';
 
 ?>
 
@@ -34,9 +35,11 @@ $meta['css'][] = 'page/animedetail';
                 <div class="anime-info"><span
                             class="font-semibold">Episode Count:</span> <?= $anime->episode_count ?? '?' ?></div>
                 <div class="anime-info"><span
-                            class="font-semibold">Air Date Start:</span> <?= !is_null($anime->air_date_start) ? date_format($anime->air_date_start, 'Y-m-d') : '?' ?></div>
+                            class="font-semibold">Air Date Start:</span> <?= !is_null($anime->air_date_start) ? date_format($anime->air_date_start, 'Y-m-d') : '?' ?>
+                </div>
                 <div class="anime-info"><span
-                            class="font-semibold">Air Date End:</span> <?= !is_null($anime->air_date_end) ? date_format($anime->air_date_end, 'Y-m-d') : '?' ?></div>
+                            class="font-semibold">Air Date End:</span> <?= !is_null($anime->air_date_end) ? date_format($anime->air_date_end, 'Y-m-d') : '?' ?>
+                </div>
             </td>
             <td class="right-content">
                 <div class="anime-stats">
@@ -51,7 +54,21 @@ $meta['css'][] = 'page/animedetail';
                                     Anime</a>
                                 <a class="btn btn-danger btn-small" href="#">Delete
                                     Anime</a>
-                                <!-- todo: delete anime -->
+                                <button class="btn btn-danger btn-small" data-modal="anime-delete">Delete Anime</button>
+                                <div class="modal" id="anime-delete">
+                                    <div class="modal-bg modal-exit"></div>
+                                    <div class="modal-container">
+                                        <h1 class="modal-title">Are you sure?</h1>
+                                        <div class="modal-body"><p>Are you sure want to delete this anime?</p></div>
+                                        <div class="modal-action">
+                                            <button class="btn modal-exit">Cancel</button>
+                                            <button class="btn btn-danger" id="anime-delete-form"
+                                                    data-id="<?= $anime->id ?>">Delete
+                                            </button>
+                                        </div>
+                                        <button class="modal-close modal-exit">X</button>
+                                    </div>
+                                </div>
                             <?php endif ?>
                         <?php endif ?>
 

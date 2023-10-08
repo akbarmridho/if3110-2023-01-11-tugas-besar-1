@@ -222,4 +222,13 @@ class Anime extends Model
 
         return static::$connection->rowCount();
     }
+
+    public static function delete(int $id): int
+    {
+        static::$connection->executeStatement("DELETE FROM anime WHERE id = :id", [
+            'id' => $id
+        ]);
+
+        return static::$connection->rowCount();
+    }
 }

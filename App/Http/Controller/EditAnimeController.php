@@ -43,4 +43,12 @@ class EditAnimeController extends BaseController
             }
         }
     }
+
+    public function deleteAnime(Request $request)
+    {
+        $id = (int)$request->getRouteParam('id');
+        Anime::delete($id);
+
+        Session::setMessage('Anime deleted successfully');
+    }
 }

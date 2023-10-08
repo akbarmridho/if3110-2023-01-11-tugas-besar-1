@@ -6,7 +6,7 @@
     width: 80%;
 }
 
-h1 {
+.content-header h1 {
     background-color: var(--light-grey, grey);
     padding: 10px 10px;
     margin-top: 2px;
@@ -38,7 +38,7 @@ select {
 }
 
 .anime {
-    width:auto;
+    width: auto;
 }
 
 .anime-stats {
@@ -52,7 +52,7 @@ select {
     font-size: 12px;
 }
 
-.stats-category{
+.stats-category {
     margin-right: 1%;
 }
 
