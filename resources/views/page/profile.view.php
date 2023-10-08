@@ -82,6 +82,7 @@ $meta['css'][] = 'page/profile';
                         <p><?= $stats['watched'] ?></p>
                     </div>
                 </div>
+                <!-- todo: anime list -->
             </div>
         </div>
     </div>
