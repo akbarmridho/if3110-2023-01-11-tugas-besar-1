@@ -2,6 +2,7 @@ import {httpRequest} from '../utils/request.js'
 
 const inputForm = document.querySelector('#q')
 const container = document.querySelector('#anime-list-content')
+const searchBy = document.querySelector('#search_by')
 
 /**
  *
@@ -9,9 +10,12 @@ const container = document.querySelector('#anime-list-content')
  */
 function makeSearch(searchValue) {
     const params = (new URL(document.location)).searchParams
+    const searchByValue = searchBy.options[searchBy.selectedIndex].value
 
     params.set('q', searchValue)
     params.delete('page')
+
+    params.set('search_by', searchByValue)
 
     params.toString()
 
