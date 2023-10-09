@@ -27,3 +27,14 @@ function move_uploaded_to_storage(string $source, string $filename, bool $random
 
     return $filename;
 }
+
+function remove_uploaded_file(string $filename): string
+{
+    $baseDestination = __DIR__ . '/../../storage/';
+
+    $destination = $baseDestination . $filename;
+
+    unlink($destination);
+
+    return $filename;
+}

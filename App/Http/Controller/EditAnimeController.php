@@ -39,13 +39,14 @@ class EditAnimeController extends BaseController
         if ($validated->isError()) {
             render('editanime', ['anime' => Anime::findById($request->getRouteParam('id'))]);
         } else {
+            $oldAnimeData = Anime::findById($request->getRouteParam('id'));
 
             if (array_key_exists('poster', $validated->data)) {
 
                 if ($validated->data['poster']['name'] !== '') {
                     // handle image upload
                     $poster = $validated->data['poster'];
-                    // todo: remove previous image
+
                     $validated->data['poster'] = move_uploaded_to_storage($poster['tmp_name'], $poster['name']);
                 } else {
                     // need to check name is not empty because if empty then no image exist
@@ -58,7 +59,7 @@ class EditAnimeController extends BaseController
                 if ($validated->data['trailer']['name'] !== '') {
                     // handle video upload
                     $trailer = $validated->data['trailer'];
-                    // todo: remove previous video
+
                     $validated->data['trailer'] = move_uploaded_to_storage($trailer['tmp_name'], $trailer['name']);
                 } else {
                     // need to check name is not empty because if empty then no image exist
@@ -67,9 +68,18 @@ class EditAnimeController extends BaseController
             }
 
             $rowCount = Anime::update($request->getRouteParam('id'), $validated->data);
+
             if ($rowCount == 0) {
                 render('editanime', ['error' => 'Failed to add new anime']);
             } else {
+                // delete old posters or trailers
+                if (isset($validated->data['poster'])) {
+                    remove_uploaded_file($oldAnimeData->poster);
+                }
+                if (isset($validated->data['trailer'])) {
+                    remove_uploaded_file($oldAnimeData->trailer);
+                }
+
                 Session::setMessage('Anime updated');
                 redirect('/anime/' . $request->getRouteParam('id'));
             }
