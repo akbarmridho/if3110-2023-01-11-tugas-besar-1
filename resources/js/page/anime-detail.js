@@ -125,8 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 toast.classList.remove('visible')
             }, 2000)
         }).catch(() => {
-            console.log('Failed to delete')
-            deleteStatusButton.disabled = false;
+            console.log('Failed to delete review')
+            deleteReviewButton.disabled = false;
         })
     })
 })
