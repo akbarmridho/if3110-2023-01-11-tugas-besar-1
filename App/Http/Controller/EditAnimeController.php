@@ -74,10 +74,14 @@ class EditAnimeController extends BaseController
             } else {
                 // delete old posters or trailers
                 if (isset($validated->data['poster'])) {
-                    remove_uploaded_file($oldAnimeData->poster);
+                    if (isset($oldAnimeData->poster)) {
+                        remove_uploaded_file($oldAnimeData->poster);
+                    }
                 }
                 if (isset($validated->data['trailer'])) {
-                    remove_uploaded_file($oldAnimeData->trailer);
+                    if (isset($oldAnimeData->trailer)) {
+                        remove_uploaded_file($oldAnimeData->trailer);
+                    }
                 }
 
                 Session::setMessage('Anime updated');
