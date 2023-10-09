@@ -96,4 +96,37 @@ document.addEventListener('DOMContentLoaded', () => {
             deleteStatusButton.disabled = false;
         })
     })
+
+    // delete review
+    const deleteReviewButton = document.getElementById('review-delete-form')
+
+    deleteReviewButton.addEventListener('click', () => {
+        deleteReviewButton.disabled = true;
+
+        const id = parseInt(deleteReviewButton.dataset.id)
+
+        httpRequest('DELETE', `/review/delete/${id}`).then((res) => {
+            // hide remove button
+            const removeReviewButton = document.getElementById('review-delete-button')
+            removeReviewButton.classList.add('hidden')
+
+            // hide review
+            const removedReview = document.getElementById(`review-${id}`)
+            removedReview.classList.add('hidden')
+
+            // update modal
+            const modal = document.getElementById('review-delete')
+            modal.classList.remove('open')
+
+            // update status di tampilan dan toaster
+            const toast = document.querySelector('#toast-review-delete')
+            toast.classList.add('visible')
+            setTimeout(() => {
+                toast.classList.remove('visible')
+            }, 2000)
+        }).catch(() => {
+            console.log('Failed to delete')
+            deleteStatusButton.disabled = false;
+        })
+    })
 })
