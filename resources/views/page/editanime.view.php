@@ -10,7 +10,7 @@ $meta['css'][] = 'page/editanime';
 
 <div class="animeeditor">
     <h1>Edit Anime</h1>
-    <form action="/admin/anime/<?= $anime->id ?>" method="post">
+    <form action="/admin/anime/<?= $anime->id ?>" method="post" enctype="multipart/form-data">
         <input type="text" value="PUT" name="_method" hidden/>
         <table>
             <tbody>
@@ -86,8 +86,26 @@ $meta['css'][] = 'page/editanime';
                            value='<?= !is_null($anime->air_date_end) ? date_format($anime->air_date_end, 'Y-m-d') : '' ?>'>
                 </td>
             </tr>
+
             <!-- todo: edit poster, trailer; delete poster/trailer from storage on update -->
             <!-- todo: preview of poster, trailer -->
+
+            <tr>
+                <td>
+                    <label for="poster">Poster</label>
+                </td>
+                <td>
+                    <input type="file" name="poster" id="poster" accept="image/*">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="trailer">Trailer</label>
+                </td>
+                <td>
+                    <input type="file" name="trailer" id="trailer" accept="video/*">
+                </td>
+            </tr>
             </tbody>
         </table>
 
