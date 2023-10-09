@@ -87,8 +87,6 @@ $meta['css'][] = 'page/editanime';
                 </td>
             </tr>
 
-            <!-- todo: edit poster, trailer; delete poster/trailer from storage on update -->
-            <!-- todo: preview of poster, trailer -->
 
             <tr>
                 <td>
