@@ -78,7 +78,5 @@ class ReviewController extends BaseController
         Review::remove($id);
 
         Session::setMessage('Review deleted successfully');
-
-        // todo: delete modal confirmation
     }
 }
