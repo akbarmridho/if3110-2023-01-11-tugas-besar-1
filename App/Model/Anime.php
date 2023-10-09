@@ -134,9 +134,10 @@ class Anime extends Model
         }
 
         if ($status !== 'all' && $userId !== null) {
-            $idsRaw = static::$connection->executeStatement('SELECT anime_id FROM user_anime WHERE status = :status',
+            $idsRaw = static::$connection->executeStatement('SELECT anime_id FROM user_anime WHERE status = :status AND user_id = :user_id',
                 [
-                    'status' => $status
+                    'status' => $status,
+                    'user_id' => $userId
                 ]);
 
             $ids = array_map(fn($row): int => $row['anime_id'], $idsRaw);
