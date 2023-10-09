@@ -6,7 +6,6 @@ ListWibuKu is a site where you could explore anime and find anime review online
 
 1. Akbar Maulana Ridho, 13521093
 2. Eugene Yap Jin Quan, 13521074
-3. Kornelis Andrian Kabo, 10023195
 
 ## Requirement
 
@@ -74,7 +73,7 @@ Setiap task di bawah meliputi pengerjaan dari server side dan client side
 | Tugas                          | NIM                |
 |--------------------------------|--------------------|
 | Login, Logout                  | 13521093           |
-| Register                       | 13521093, 10023195 |
+| Register                       | 13521093           |
 | Profile                        | 13521074, 13521093 |
 | Add and update anime           | 13521074           |
 | Update and delete anime status | 13521093           |
