@@ -94,18 +94,24 @@ $meta['js'][] = 'page/anime-detail';
                 <?php else: ?>
                     No trailer found
                 <?php endif ?>
-                <?php if (Session::isAuthenticated() && is_null($user_review)) : ?>
-                    <h2 class="font-bold">My Review</h2>
-                    <a href='/review/add/<?= $anime->id?>' class='btn btn-primary btn-small'>Add review</a>
-                    <!-- todo: change review layout -->
-                <?php endif ?>
+                
                 <h2 class="font-bold">Reviews</h2>
+                <?php if (Session::isAuthenticated() && is_null($user_review)) : ?>
+                    Write your review 
+                    <a href='/review/add/<?= $anime->id?>' class='btn btn-primary btn-small'>Add review</a>
+                    <br><br>
+                <?php endif ?>
+
                 <?php
-                if (is_null($reviews)) {
-                    echo "No reviews found";
-                } else {
-                    render_component('reviews/reviewlist', ['data' => $reviews]);
-                }
+                    if (is_null($reviews)) {
+                        echo "No reviews found";
+                    } else {
+                        if (Session::isAuthenticated()) {
+                            render_component('reviews/reviewlist', ['data' => $reviews, 'user_id' => Session::$user->id]);
+                        } else {
+                            render_component('reviews/reviewlist', ['data' => $reviews]);
+                        }
+                    }
                 ?>
             </td>
         </tr>
